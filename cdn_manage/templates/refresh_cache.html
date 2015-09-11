@@ -1,0 +1,231 @@
+{% extends "base.html" %} 
+{% block title %}<title>刷新缓存</title>{% endblock %}
+
+{% block content %} 
+
+			<!-- start: Content -->
+<div id="content" class="span10">
+			
+			
+	<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/">Home</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/refresh_cache/">Refresh Cache</a></li>
+			</ul>
+
+    <div id="alertSucc" class="alert alert-success" style="position:absolute;z-index:1000;display:none">
+       <a href="javascript:closeAlert('#alertSucc')" class="close">
+         &times;
+       </a>
+       <span id="succContent"></span>
+     </div>
+    <div id="alertFail" class="alert alert-danger" style="position:absolute;z-index:1000;display:none">
+       <a href="javascript:closeAlert('#alertFail')" class="close">
+        &times;
+       </a>
+       <span id="failContent"></span>
+    </div>
+
+
+
+
+			<div class="row-fluid">
+				<div class="span12">
+                    <h1> 刷新缓存</h1>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+		        <div class="span12">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#url_refresh" data-toggle="tab">URL刷新</a>
+                        </li>
+                        <li>
+                            <a href="#dir_refresh" data-toggle="tab">目录刷新</a>
+                        </li>
+                        <li>
+                            <a href="#url_prefetch" data-toggle="tab">URL预热</a>
+                        </li>
+                        <li>
+                            <a href="#task_list" data-toggle="tab">查询操作记录</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="url_refresh">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="url_to_refresh">输入刷新对象URL：</label>
+                                <textarea id="url_to_refresh" style="width:90%;" class="form-control"
+                                          onkeyup="checkUrl(this,'#error_url','#url_submit_button')"
+                                          placeholder="http://exp.scloudm.com/a.png" rows="10" required></textarea>
+                                     <span class="help-block">多个URL请用回车隔开，一次提交不能超过20个URL</span>
+                                     <p id="error_url" style="color:red;"></p>
+                                </div>
+                                <div class="pull-left">
+                                    <button id="url_submit_button" onclick="handlerCache('1','#url_to_refresh')"
+                                            type="button" class="btn btn-primary" DISABLED>提交
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="dir_refresh">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="dir_to_refresh">输入刷新目录URL：</label>
+                                <textarea id="dir_to_refresh" style="width:90%;" class="form-control"
+                                          onkeyup="checkUrl(this,'#error_dir','#dir_submit_button')"
+                                          placeholder="http://exp.scloudm.com/a/" rows="10" required></textarea>
+                                     <span class="help-block">多个URL请用回车隔开，一次提交不能超过20个目录</span>
+                                     <p id="error_dir" style="color:red;"></p>
+                                </div>
+                                <div class="pull-left">
+                                    <button id="dir_submit_button" onclick="handlerCache('0','#dir_to_refresh')"
+                                         type="button"    class="btn btn-primary" DISABLED>提交
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="url_prefetch">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="url_to_prefetch">输入预热文件URL：</label>
+                                <textarea id="url_to_prefetch" style="width:90%;" class="form-control"
+                                          onkeyup="checkUrl(this,'#error_prefetch','#prefetch_submit_button')"
+                                          placeholder="http://exp.scloudm.com/a.png" rows="10" required></textarea>
+                                     <span class="help-block">多个URL请用回车隔开，一次提交不能超过20个URL</span>
+                                     <p id="error_prefetch" style="color:red;"></p>
+                                </div>
+                                <div class="pull-left">
+                                    <button id="prefetch_submit_button" onclick="handlerCache('2','#url_to_prefetch')"
+                                         type="button"    class="btn btn-primary" DISABLED>提交
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="task_list">
+                         <div class="row-fluid">
+		                    <div class="span11">
+						 <table id="domain_table" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th style="width:60px;">任务类型</th>
+                                  <th>任务内容</th>
+                                  <th style="width:60px;">任务状态</th>
+                                  <th style="width:135px;">添加时间</th>
+                                  <th style="width:60px;">操作用户</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+                          {% for t in tasks%}
+							<tr>
+								<td>
+                                    {% ifequal t.task_type '1' %}
+                                        URL刷新
+                                    {% endifequal %}
+                                    {% ifequal t.task_type '0' %}
+                                        目录刷新
+                                    {% endifequal %}
+                                    {% ifequal t.task_type '2' %}
+                                        URL预热
+                                    {% endifequal %}
+                                </td>
+								<td class="center">
+                                    {{ t.task_content }}
+                                </td>
+								<td class="center" id="status{{ d.id }}">
+                                    {% ifequal t.task_status 'success' %}
+									    <span class="label label-info">{{ t.task_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal t.task_status 'run' %}
+                                         <span class="label label-success">{{ t.task_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal t.task_status 'failure' %}
+                                         <span class="label label-important">{{ t.task_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal t.task_status 'delete' %}
+                                         <span class="label label-warning">{{ t.task_status }}</span>
+                                    {% endifequal %}
+								</td>
+                                <td class="center">{{ t.task_create_at|date:"Y-m-d H:i:s" }}</td>
+                                <td class="center">{{ t.task_user }}</td>
+                          {% endfor %}
+                          </tbody>
+					    </table>
+                            </div>
+                             </div>
+                        </div>
+		            </div>
+
+	            </div>
+            </div>
+</div>
+
+    <div class="modal hide fade" id="result_of_url">
+		<div class="modal-header">
+			<h3>系统提示</h3>
+		</div>
+		<div class="modal-body">
+			<p id="content_of_url"></p>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:window.location.reload()" class="btn btn-primary">确认</a>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block js %}
+<script>
+function IsURL(str_url){
+    var strRegex = /^((https|http|ftp|rtsp|mms)?:\/\/)(?:[\w-\.]{0,255})(?:(?:\/?[^\s]{0,255}){0,255})/g;
+    //^http://[A-Za-z0-9]+.[A-Za-z0-9]+[/=?%-&_~`@[]':+!]*([^<>"])*$
+    var re=new RegExp(strRegex);
+    return re.test(str_url);
+}
+
+function checkUrl(obj, error_id, submit_id){
+    var content = obj.value.split("\n");
+    for (var i=0;i<content.length;i++){
+        if (content[i] == "") {
+            continue
+        }
+        if(IsURL(content[i])){
+            $(submit_id).removeAttr("disabled");
+             $(error_id).html("");
+        }else{
+            $(submit_id).attr("disabled", "disabled");
+            $(error_id).html("请输入正确的URL好吗");
+        }
+    }
+}
+
+function handlerCache(type, textarea_id){
+     return $.ajax({
+        type: "POST",
+        url: "/handler_cache/",
+        async: false,
+        data: {"url": $(textarea_id).val(), "type": type},
+        success: function(data) {
+            $("#content_of_url").html(data);
+            $("#result_of_url").modal('show');
+        },
+        error: function() {
+            alert("error");
+        },
+      });
+}
+
+</script>
+{% endblock %}

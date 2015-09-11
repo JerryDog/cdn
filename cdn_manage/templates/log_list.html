@@ -1,0 +1,23 @@
+<table id="domain_table" style="width:400px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>文件名</th>
+								  <th>操作</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+                          {% for l in logs%}
+							<tr>
+								<td class="center">{{ l.name }}</td>
+
+								<td class="center">
+
+                                        <a href="{{ l.url }}"
+                                           class="btn btn-primary btn-lg" role="button">
+                                        下载
+                                        </a>
+								</td>
+							</tr>
+                          {% endfor %}
+						  </tbody>
+					  </table>

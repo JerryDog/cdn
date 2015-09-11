@@ -1,0 +1,136 @@
+{% extends "base.html" %} 
+{% block title %}<title>带宽监控</title>{% endblock %}
+
+{% block content %} 
+
+			<!-- start: Content -->
+<div id="content" class="span10">
+			
+			
+	<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/">Home</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/bandwidth/">Bandwidth</a></li>
+	</ul>
+
+
+	<div class="row-fluid">
+		<div class="span12">
+            <h1> 带宽监控</h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+
+        <form  id="date_form" class="form-horizontal">
+            <h3>域名选择: </h3>
+                {% for d in domains %}
+                <label><input type="radio" name="domain_name"
+                value="{{ d.domain_name }}"> {{ d.domain_name }}
+                </label>
+                {% endfor %}
+
+            <h3>选择的一段时间来查询其用量: </h3>
+            <span>从: <input style="width:80px;"  class="datepicker"  type="text" name="start"  id="id_start" /> </span>
+
+            <span>到: <input style="width:80px;" class="datepicker"  type="text" name="end" id="id_end" /> </span>
+                <button id="prefetch_submit_button" onclick="bandwidth()"
+                                         type="button"    class="btn btn-primary">提交
+                                    </button>
+                <small>日期采是YYYY-mm-dd格式。</small>
+        </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+            <img id="bandwidth_img" src="">
+        </div>
+    </div>
+
+</div>
+
+
+    <div class="modal hide fade" id="result_of_url">
+		<div class="modal-header">
+			<h3>系统提示</h3>
+		</div>
+		<div class="modal-body">
+			<p id="content_of_url"></p>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:window.location.reload()" class="btn btn-primary">确认</a>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block js %}
+<script>
+Date.prototype.format =function(format)
+    {
+        var o = {
+        "M+" : this.getMonth()+1, //month
+"d+" : this.getDate(),    //day
+"h+" : this.getHours(),   //hour
+"m+" : this.getMinutes(), //minute
+"s+" : this.getSeconds(), //second
+"q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+"S" : this.getMilliseconds() //millisecond
+        }
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+        (this.getFullYear()+"").substr(4- RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+        format = format.replace(RegExp.$1,
+        RegExp.$1.length==1? o[k] :
+        ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
+    }
+
+$(function(){
+    start = new Date().format('yyyy-MM-01');
+    end = new Date().format('yyyy-MM-dd');
+    $("#id_start").val(start)
+    $("#id_end").val(end)
+});
+
+function checkRedio(){
+    var result=false;
+    var radios = document.getElementsByName("domain_name");
+    for(var i=0;i<radios .length;i++){
+        if (radios[i].checked){
+            result=true;
+        }
+    };
+    if(!result){
+        $("#content_of_url").html("请至少选择一个域名");
+        $("#result_of_url").modal('show');
+    }
+    return result;
+}
+
+
+function bandwidth(){
+     if(!checkRedio()) return false;
+     return $.ajax({
+        type: "POST",
+        url: "/bandwidth/",
+        async: false,
+        data: $("#date_form").serialize(),
+        success: function(data) {
+            if(data.indexOf("png") > 0){
+                $("#bandwidth_img").attr("src","/static/img/monitor/"+data);
+            }else{
+                $("#content_of_url").html(data);
+                $("#result_of_url").modal('show');
+            }
+        },
+        error: function() {
+            alert("error");
+        },
+      });
+}
+
+</script>
+{% endblock %}

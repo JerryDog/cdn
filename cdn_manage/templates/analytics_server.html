@@ -1,0 +1,167 @@
+{% extends "base.html" %} 
+{% block title %}<title>数据分析</title>{% endblock %}
+
+{% block content %} 
+
+			<!-- start: Content -->
+
+<div id="content" class="span10">
+			
+			
+	<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/">Home</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/bandwidth/">analyticsServer</a></li>
+	</ul>
+
+
+	<div class="row-fluid">
+		<div class="span12">
+            <h1> 数据分析</h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+
+
+        <form  id="date_form" class="form-horizontal">
+        <div class="span12">
+            <h3>域名选择: </h3>
+                {% for d in domains %}
+                <label><input type="radio" name="domain_name"
+                value="{{ d.domain_name }}"> {{ d.domain_name }}
+                </label>
+                {% endfor %}
+            <h3>类型选择: </h3>
+               <div class="graphs-sec-contain">
+
+	               <div class="graphs-time-ul">
+		            <ul>
+		                <li class="graphs-selected">URL热门信息</li>
+		                <li class="graphs-noselected">独立IP</li>
+		                <li class="graphs-noselected">来源信息</li>
+		                <li class="graphs-noselected">客户浏览器</li>
+                        <li class="graphs-noselected">带宽或流量</li>
+                        <li class="graphs-noselected">访问状态码</li>
+  		            </ul>
+	            </div>
+	        </div>
+        </div>
+            <div class="row-fluid">
+            <div class="span12">
+            <h3>选择的一段时间来查询其用量: </h3>
+            <span>从: <input style="width:80px;"  class="datepicker"  type="text" name="start" value="2015-09-01" id="id_start" /> </span>
+
+            <span>到: <input style="width:80px;" class="datepicker"  type="text" name="end" value="2015-09-10" id="id_end" /> </span>
+                <button id="prefetch_submit_button" onclick="bandwidth()"
+                                         type="button"    class="btn btn-primary">提交
+                                    </button>
+                <small>日期采是YYYY-mm-dd格式。</small>
+            </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+            <div id="resp_content"></div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="modal hide fade" id="result_of_url">
+		<div class="modal-header">
+			<h3>系统提示</h3>
+		</div>
+		<div class="modal-body">
+			<p id="content_of_url"></p>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:window.location.reload()" class="btn btn-primary">确认</a>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block js %}
+<script>
+Date.prototype.format =function(format)
+    {
+        var o = {
+        "M+" : this.getMonth()+1, //month
+"d+" : this.getDate(),    //day
+"h+" : this.getHours(),   //hour
+"m+" : this.getMinutes(), //minute
+"s+" : this.getSeconds(), //second
+"q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+"S" : this.getMilliseconds() //millisecond
+        }
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+        (this.getFullYear()+"").substr(4- RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+        format = format.replace(RegExp.$1,
+        RegExp.$1.length==1? o[k] :
+        ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
+    }
+
+$(function(){
+    start = new Date().format('yyyy-MM-01');
+    end = new Date().format('yyyy-MM-dd');
+    $("#id_start").val(start)
+    $("#id_end").val(end)
+});
+
+var req_type = "DA_URL";
+$(function(){
+    $("div.graphs-time-ul ul li").click(function(e)
+    	{
+            var i= $(this).index();
+            req_type=["DA_URL","DA_IP","DA_REFER","DA_BROWSER","DA_FLUX","DA_HTTPSTATUS"][i];
+            $("div.graphs-time-ul ul li").attr("class","graphs-noselected");
+            $(this).attr("class", "graphs-selected");
+            e.preventDefault();
+        });
+});
+
+function checkRedio(){
+    var result=false;
+    var radios = document.getElementsByName("domain_name");
+    for(var i=0;i<radios .length;i++){
+        if (radios[i].checked){
+            result=true;
+        }
+    };
+    if(!result){
+        $("#content_of_url").html("请至少选择一个域名");
+        $("#result_of_url").modal('show');
+    }
+    return result;
+}
+
+function bandwidth(){
+     if(!checkRedio()) return false;
+     return $.ajax({
+        type: "POST",
+        url: "/analytics_server/",
+        async: false,
+        data: $("#date_form").serialize()+'&req_type='+req_type,
+        success: function(data) {
+            if(data.indexOf("xml") > 0){
+                $("#resp_content").text(data);
+            }else{
+                $("#content_of_url").html(data);
+                $("#result_of_url").modal('show');
+            }
+        },
+        error: function() {
+            alert("error");
+        },
+      });
+}
+
+</script>
+{% endblock %}

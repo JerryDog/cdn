@@ -1,0 +1,128 @@
+
+
+
+<p>
+    <ul id="myEditDomainTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#edmDomain" data-toggle="tab">域信息</a>
+                        </li>
+                        <li>
+                            <a href="#edmRules" data-toggle="tab">缓存规则</a>
+                        </li>
+                        <li>
+                            <a href="#edmAc" data-toggle="tab">访问控制</a>
+                        </li>
+                    </ul>
+                    <div id="editDomainTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="edmDomain">
+                            <p>
+                                <div class="form-group">
+                                    <label for="edit_domain_name">域名 <font color="red">*</font></label>
+                                        <input type="text" class="form-control" id="edit_domain_name"
+                                        placeholder="example: www.test.com" name="domain_name"
+                                        disabled="true" readOnly="true"  value="{{ domain.domain_name}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edit_ip_list">IP地址列表 <font color="red">*</font></label>
+                                        <textarea  class="form-control" rows="3" id="edit_ip_list"
+                                        placeholder="多个IP请用英文逗号间隔" name="ip_list"required>{{ domain.ip_list}}
+</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edit_test_url">测试URL <font color="red">*</font></label>
+                                        <input type="url" class="form-control" id="edit_test_url"
+                                        placeholder="example: http://www.test.com" name="test_url"
+                                         disabled="true" readOnly="true"  value="{{ domain.test_url}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edit_ignore_param_req">是否禁用 <font color="red">*</font>
+                                    </label>
+                                    <input type="checkbox" class="form-control" id="edit_ignore_param_req"
+                                        name="ignore_param_req" {{ ignore_param_req }}>
+                                </div>
+
+                <input type="text" name="cache_rules" id="edit_cache_rules"  style="display:none;">
+                <input type="text" name="acl" id="edit_acl"  style="display:none;">
+                <input type="text" name="edit_session_id" id="edit_session_id"  style="display:none;"
+                    value="{{ session_id }}">
+                            </p>
+
+                        </div>
+
+   <div class="tab-pane fade" id="edmRules">
+       <p>
+         <table class="table table-hover table-striped table-bordered" id="editTabCache">
+            <tbody>
+
+				<tr>
+                    <td  EditType="TextBox">缓存类型</td>
+                    <td>从不缓存</td>
+                    <td>忽略参数请求</td>
+                    <td  EditType="TextBox">缓存时间</td>
+                    <td name="Num"></td>
+                </tr>
+                {% if domain_cache %}
+                    {% for c in domain_cache %}
+                    <tr>
+                    <td>{{ c.cache_type }}</td>
+                    <td><input type="checkbox" id="cache_rules1" onclick="smallChange(this)"
+                            {% ifequal c.is_cached 1 %}
+                                checked
+                            {% endifequal %}></td>
+                    <td><input type="checkbox" id="cache_rules2" onclick="smallChange(this)"
+                               {% ifequal c.ignore_param_req 1 %}
+                                checked
+                               {% endifequal %}></td>
+                    <td>{{ c.cache_time }}</td>
+                    <td><button type="button" class="btn btn-danger  btn-mini" onclick="DeleteRow('editTabCache',this)">X</button></td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+			</tbody>
+		</table>
+        <br />
+        <a href="javascript:AddRow(document.getElementById('editTabCache'),1)" class="btn btn-primary btn-sm" role="button">新增</a>
+
+        </p>
+       </div>
+
+   <div class="tab-pane fade" id="edmAc">
+       <p>
+         <table class="table table-hover table-striped table-bordered" id="edmTabAcl">
+            <tbody>
+
+				<tr>
+                    <td  EditType="TextBox">链接类型</td>
+                    <td  EditType="TextBox">白名单列表</td>
+                    <td  EditType="TextBox">黑名单列表</td>
+                    <td  EditType="TextBox">阻止IP列表</td>
+                    <td name="Num"></td>
+                </tr>
+
+                {% if domain_acl %}
+                    {% for a in domain_acl %}
+                    <tr>
+                    <td>{{ a.url_type }}</td>
+                    <td>{{ a.white_list }}</td>
+                    <td>{{ a.black_list }}</td>
+                    <td>{{ a.deny_list }}</td>
+                    <td>
+                    <button type="button" class="btn btn-danger  btn-mini" onclick="DeleteRow('tabAcl',this)">X</button>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+			</tbody>
+		</table>
+
+        <br />
+        <a href="javascript:AddRow4Acl(document.getElementById('edmTabAcl'),1)" class="btn btn-primary btn-sm" role="button">新增</a>
+
+        </p>
+   </div>
+</div>
+
+			    </p>

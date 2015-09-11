@@ -1,0 +1,86 @@
+@charset "utf-8";
+.graphs-contain{
+min-width:800px;
+height:450px;
+}
+
+.graphs-title{
+width:100%;
+height:20px;
+/*border-bottom: 3px solid #ecf0f2;*/
+margin:5px;
+}
+
+.graphs-main-contain{
+margin:5px;
+min-width:100%;
+height:100%;
+/*border:1px solid #000;*/
+}
+
+.graphs-first-contain{
+float:left;
+margin:0 5px 5px 0;
+width:15%;
+height:100%;
+/*border:1px solid #000;*/
+}
+
+.graphs-sec-contain{
+float:left;
+height:90%;
+width:70%;
+/*border:1px solid #000;*/
+}
+
+.graphs-ul ul{
+margin:0;
+padding:0;
+}
+
+.graphs-ul ul li{ 
+list-style-type:none;
+left:0;
+border-bottom: 1px solid #ecf0f2;
+line-height:40px;
+}
+
+.graphs-ul ul li:hover{ 
+background: #00a5bd;
+cursor:pointer;
+}
+
+.graphs-selected{
+list-style-type:none;
+float:left;
+margin:5px;
+padding:2px 5px 2px 5px;
+border: 1px solid #00a5bd;
+background-color: #00a5bd;
+color: #666;
+font-family: "Microsoft YaHei";
+}
+
+.graphs-time-ul ul{
+/*border:1px solid #000;*/
+margin:0;
+padding:0;
+width:100%;
+height:10%;
+}
+
+.graphs-noselected{
+list-style-type:none;
+float:left;
+margin:5px;
+padding:2px 5px 2px 5px;
+border: 1px solid #D9DEE4;
+background-color: #D9DEE4;
+color: #666;
+font-family: "Microsoft YaHei";
+}
+
+.graphs-time-ul ul li:hover{ 
+background: #00a5bd;
+cursor:pointer;
+}

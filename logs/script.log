@@ -1,0 +1,1347 @@
+2015-08-31 18:56:52,848 [Thread-1:11956] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 41, in create_domain
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-08-31 20:05:37,398 [Thread-623:11916] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 41, in create_domain
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-08-31 20:05:37,561 [Thread-624:12440] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-01 15:22:01,209 [Thread-112:5540] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 70, in createDomain
+    } % (cache_type, is_cached, ignore_param_req, cache_time)
+TypeError: unsupported operand type(s) for %: 'dict' and 'tuple'
+2015-09-01 15:22:01,351 [Thread-113:10412] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-01 18:06:23,740 [Thread-907:9480] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 44, in createDomain
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-01 18:06:23,904 [Thread-908:8504] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-01 18:47:40,970 [Thread-2053:4692] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-01 20:50:41,035 [Thread-6:1224] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 44, in createDomain
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-01 20:50:41,213 [Thread-7:12728] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-01 21:05:48,921 [Thread-58:7796] [django.request:224] [ERROR]- Internal Server Error: /create_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 106, in createDomain
+    req.flash['error'] = current_js
+AttributeError: 'WSGIRequest' object has no attribute 'flash'
+2015-09-01 21:10:59,032 [Thread-60:12276] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 40, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-02 10:23:48,953 [Thread-60:6316] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 40, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-02 10:23:49,111 [Thread-61:10084] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-02 10:37:30,463 [Thread-1:11276] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 199, in get_response
+    response = middleware_method(request, response)
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\middleware.py", line 38, in process_response
+    request.session.save()
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\db.py", line 56, in save
+    session_key=self._get_or_create_session_key(),
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 153, in _get_or_create_session_key
+    self._session_key = self._get_new_session_key()
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 147, in _get_new_session_key
+    if not self.exists(session_key):
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in exists
+    return Session.objects.filter(session_key=session_key).exists()
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 515, in exists
+    return self.query.has_results(using=self.db)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 409, in has_results
+    return bool(compiler.execute_sql(SINGLE))
+  File "C:\Python27\lib\site-packages\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\mysql\base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python27\lib\site-packages\MySQLdb\cursors.py", line 174, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'cdn.django_session' doesn't exist")
+2015-09-02 10:42:56,857 [Thread-3:7948] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 199, in get_response
+    response = middleware_method(request, response)
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\middleware.py", line 38, in process_response
+    request.session.save()
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\db.py", line 57, in save
+    session_data=self.encode(self._get_session(no_load=must_create)),
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 87, in encode
+    serialized = self.serializer().dumps(session_dict)
+  File "C:\Python27\lib\site-packages\django\core\signing.py", line 88, in dumps
+    return json.dumps(obj, separators=(',', ':')).encode('latin-1')
+  File "C:\Python27\lib\json\__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "C:\Python27\lib\json\encoder.py", line 207, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python27\lib\json\encoder.py", line 270, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python27\lib\json\encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: UUID('513b40c0-511c-11e5-bd14-e03f4978b2ff') is not JSON serializable
+2015-09-02 10:44:10,773 [Thread-7:12604] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 199, in get_response
+    response = middleware_method(request, response)
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\middleware.py", line 38, in process_response
+    request.session.save()
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\db.py", line 57, in save
+    session_data=self.encode(self._get_session(no_load=must_create)),
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 87, in encode
+    serialized = self.serializer().dumps(session_dict)
+  File "C:\Python27\lib\site-packages\django\core\signing.py", line 88, in dumps
+    return json.dumps(obj, separators=(',', ':')).encode('latin-1')
+  File "C:\Python27\lib\json\__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "C:\Python27\lib\json\encoder.py", line 207, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python27\lib\json\encoder.py", line 270, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python27\lib\json\encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: UUID('7d497b4f-511c-11e5-a356-e03f4978b2ff') is not JSON serializable
+2015-09-02 10:49:39,579 [Thread-120:544] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 24, in domainManage
+    print 'ssion %s' % req.session["session_id"]
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 47, in __getitem__
+    return self._session[key]
+KeyError: 'session_id'
+2015-09-02 10:50:04,391 [Thread-121:10540] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 24, in domainManage
+    print 'ssion %s' % req.session["session_id"]
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 47, in __getitem__
+    return self._session[key]
+KeyError: 'session_id'
+2015-09-02 10:50:26,176 [Thread-126:9336] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 24, in domainManage
+    print 'ssion %s' % req.session["session_id"]
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 47, in __getitem__
+    return self._session[key]
+KeyError: 'session_id'
+2015-09-02 10:51:50,871 [Thread-60:1152] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 24, in domainManage
+    if not req.session["session_id"]:
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 47, in __getitem__
+    return self._session[key]
+KeyError: 'session_id'
+2015-09-02 12:04:16,907 [Thread-292:10272] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 129, in deleteDomain
+    id_obj = Domain.objects.get(id=i)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: Domain matching query does not exist.
+2015-09-02 12:04:39,414 [Thread-351:11064] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 129, in deleteDomain
+    id_obj = Domain.objects.get(id=i)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: Domain matching query does not exist.
+2015-09-02 12:09:19,937 [Thread-60:4960] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 129, in deleteDomain
+    id_obj = Domain.objects.get(id=i)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: Domain matching query does not exist.
+2015-09-02 12:09:22,072 [Thread-61:11084] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 129, in deleteDomain
+    id_obj = Domain.objects.get(id=i)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: Domain matching query does not exist.
+2015-09-02 12:14:31,947 [Thread-522:13296] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 129, in deleteDomain
+    id_obj = Domain.objects.get(id=i)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: Domain matching query does not exist.
+2015-09-02 14:15:55,377 [Thread-235:13072] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 54, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-02 14:50:03,224 [Thread-829:7688] [django.request:224] [ERROR]- Internal Server Error: /domain_detail/89/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 136, in domainDetail
+    domain = Domain.objects.get(domain_id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 301, in get
+    clone = self.filter(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 593, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 611, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1204, in add_q
+    clause = self._add_q(where_part, used_aliases)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1240, in _add_q
+    current_negated=current_negated)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1103, in build_filter
+    allow_explicit_fk=True)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1363, in setup_joins
+    names, opts, allow_many, allow_explicit_fk)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1283, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'domain_id' into field. Choices are: create_time, distribution_id, domain_name, domain_status, domain_type, etag, id, ignore_param_req, ip_list, test_url, update_time, use_id
+2015-09-02 14:50:46,469 [Thread-833:8200] [django.request:224] [ERROR]- Internal Server Error: /domain_detail/90/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 136, in domainDetail
+    domain = Domain.objects.get(domain_id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 301, in get
+    clone = self.filter(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 593, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 611, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1204, in add_q
+    clause = self._add_q(where_part, used_aliases)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1240, in _add_q
+    current_negated=current_negated)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1103, in build_filter
+    allow_explicit_fk=True)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1363, in setup_joins
+    names, opts, allow_many, allow_explicit_fk)
+  File "C:\Python27\lib\site-packages\django\db\models\sql\query.py", line 1283, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'domain_id' into field. Choices are: create_time, distribution_id, domain_name, domain_status, domain_type, etag, id, ignore_param_req, ip_list, test_url, update_time, use_id
+2015-09-02 14:51:33,282 [Thread-59:13188] [django.request:224] [ERROR]- Internal Server Error: /domain_detail/89/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 137, in domainDetail
+    domain_cache = CacheRules.objects.get(id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: CacheRules matching query does not exist.
+2015-09-02 15:18:46,141 [Thread-1016:12968] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 54, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-02 15:31:37,282 [Thread-1113:13276] [django.request:143] [WARNING]- Not Found: /domain_manage/dist/jquery-migrate.min.map
+2015-09-02 15:45:59,516 [Thread-1895:1824] [django.request:224] [ERROR]- Internal Server Error: /domain_detail/100/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 137, in domainDetail
+    domain_cache = CacheRules.objects.get(id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: CacheRules matching query does not exist.
+2015-09-02 16:50:41,269 [Thread-4:5236] [django.request:143] [WARNING]- Not Found: /domain_detail/100/
+2015-09-02 16:50:41,301 [Thread-5:12576] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-02 16:53:20,974 [Thread-1:12752] [django.request:224] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 99, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 15, in <module>
+    url(r'^edit_domain/(\d+)/$', views.editDomain, name='edit_domain'),
+AttributeError: 'module' object has no attribute 'editDomain'
+2015-09-02 16:53:26,312 [Thread-3:12656] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 99, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 15, in <module>
+    url(r'^edit_domain/(\d+)/$', views.editDomain, name='edit_domain'),
+AttributeError: 'module' object has no attribute 'editDomain'
+2015-09-02 16:53:37,342 [Thread-9:9384] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 99, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 15, in <module>
+    url(r'^edit_domain/(\d+)/$', views.editDomain, name='edit_domain'),
+AttributeError: 'module' object has no attribute 'editDomain'
+2015-09-02 16:53:55,517 [Thread-10:7752] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 99, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 15, in <module>
+    url(r'^edit_domain/(\d+)/$', views.editDomain, name='edit_domain'),
+AttributeError: 'module' object has no attribute 'editDomain'
+2015-09-02 16:54:45,937 [Thread-64:8024] [django.request:143] [WARNING]- Not Found: /domain_detail/100/
+2015-09-02 16:55:32,401 [Thread-71:6952] [django.request:143] [WARNING]- Not Found: /domain_detail/100/
+2015-09-02 17:28:44,499 [Thread-1442:12672] [django.request:143] [WARNING]- Not Found: /domain_manage/dist/jquery-migrate.min.map
+2015-09-02 17:30:36,845 [Thread-1533:8912] [django.request:143] [WARNING]- Not Found: /domain_manage/dist/jquery-migrate.min.map
+2015-09-02 17:31:41,184 [Thread-59:12776] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/104/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 137, in editDomain
+    domain_cache = CacheRules.objects.get(domain_id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one CacheRules -- it returned 2!
+2015-09-02 17:31:48,115 [Thread-118:4684] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/103/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 137, in editDomain
+    domain_cache = CacheRules.objects.get(domain_id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 310, in get
+    self.model._meta.object_name)
+DoesNotExist: CacheRules matching query does not exist.
+2015-09-02 17:32:05,305 [Thread-90:1148] [django.request:143] [WARNING]- Not Found: /domain_manage/dist/jquery-migrate.min.map
+2015-09-02 17:32:29,663 [Thread-59:4372] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/104/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 137, in editDomain
+    domain_cache = CacheRules.objects.get(domain_id=domain_id)
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one CacheRules -- it returned 2!
+2015-09-02 17:33:13,516 [Thread-90:12492] [django.request:143] [WARNING]- Not Found: /domain_manage/dist/jquery-migrate.min.map
+2015-09-02 18:11:22,454 [Thread-1391:9136] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-02 19:52:53,118 [Thread-1800:12940] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/100
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\lib\site-packages\django\middleware\common.py", line 81, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/edit_domain/100/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2015-09-02 19:56:47,532 [Thread-1:2980] [django.request:143] [WARNING]- Not Found: /edit_domain/
+2015-09-02 19:57:33,772 [Thread-60:11820] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/100
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\lib\site-packages\django\middleware\common.py", line 81, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/edit_domain/100/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2015-09-03 01:08:55,030 [Thread-311:4708] [django.request:143] [WARNING]- Not Found: /domain_manage/messages.html
+2015-09-03 01:08:55,062 [Thread-312:1056] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-03 01:10:09,030 [Thread-375:6140] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 61, in domainManage
+    create_obj.create()
+  File "F:\cdn\cdn_manage\CdnApi.py", line 175, in create
+    status, reason, resp = self.req(type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 155, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 135, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-03 21:04:56,405 [Thread-158:5856] [django.request:143] [WARNING]- Not Found: /css/ie.css
+2015-09-03 21:05:41,453 [Thread-200:4664] [django.request:143] [WARNING]- Not Found: /domain_manage/css/ie.css
+2015-09-03 21:06:20,140 [Thread-208:5888] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 61, in domainManage
+    create_obj.create()
+  File "F:\cdn\cdn_manage\CdnApi.py", line 175, in create
+    status, reason, resp = self.req(type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 155, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 135, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-03 21:06:24,171 [Thread-210:6132] [django.request:143] [WARNING]- Not Found: /domain_manage/css/ie.css
+2015-09-03 21:27:49,046 [Thread-824:1136] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 61, in domainManage
+    create_obj.create()
+  File "F:\cdn\cdn_manage\CdnApi.py", line 175, in create
+    status, reason, resp = self.req(type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 155, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "F:\cdn\cdn_manage\CdnApi.py", line 135, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-03 21:27:49,342 [Thread-825:5016] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-03 21:28:33,640 [Thread-1:4460] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 53, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-03 21:28:37,467 [Thread-3:5124] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 53, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 3!
+2015-09-03 22:19:27,140 [Thread-61:4136] [django.request:224] [ERROR]- Internal Server Error: /update_domain/6/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 114, in updateDomain
+    domain_name = req.POST.get('domain_name').strip()
+AttributeError: 'NoneType' object has no attribute 'strip'
+2015-09-03 22:19:27,342 [Thread-62:4656] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-03 22:22:13,437 [Thread-58:2172] [django.request:224] [ERROR]- Internal Server Error: /update_domain/6/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 122, in updateDomain
+    domain.update(domain_status=domain_status,
+AttributeError: 'Domain' object has no attribute 'update'
+2015-09-03 22:22:57,983 [Thread-58:2068] [django.request:224] [ERROR]- Internal Server Error: /update_domain/6/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 126, in updateDomain
+    domain_name = domain.domain_name
+AttributeError: 'QuerySet' object has no attribute 'domain_name'
+2015-09-03 22:24:49,437 [Thread-61:4700] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "F:\cdn\cdn_manage\views.py", line 53, in domainManage
+    domain_id = Domain.objects.get(domain_name=domain_name).id
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 313, in get
+    (self.model._meta.object_name, num))
+MultipleObjectsReturned: get() returned more than one Domain -- it returned 2!
+2015-09-04 20:20:15,545 [Thread-59:5828] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-06 11:14:07,904 [Thread-8:2248] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 71, in domainManage
+    if req.session.has_key("current_js"):
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 115, in has_key
+    return key in self._session
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\base.py", line 173, in _get_session
+    self._session_cache = self.load()
+  File "C:\Python27\lib\site-packages\django\contrib\sessions\backends\db.py", line 20, in load
+    expire_date__gt=timezone.now()
+  File "C:\Python27\lib\site-packages\django\db\models\manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 304, in get
+    num = len(clone)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 77, in __len__
+    self._fetch_all()
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "C:\Python27\lib\site-packages\django\db\models\sql\compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "C:\Python27\lib\site-packages\django\db\models\sql\compiler.py", line 785, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Python27\lib\site-packages\django\db\backends\__init__.py", line 160, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "C:\Python27\lib\site-packages\django\db\backends\__init__.py", line 132, in _cursor
+    self.ensure_connection()
+  File "C:\Python27\lib\site-packages\django\db\backends\__init__.py", line 127, in ensure_connection
+    self.connect()
+  File "C:\Python27\lib\site-packages\django\db\utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "C:\Python27\lib\site-packages\django\db\backends\__init__.py", line 127, in ensure_connection
+    self.connect()
+  File "C:\Python27\lib\site-packages\django\db\backends\__init__.py", line 115, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "C:\Python27\lib\site-packages\django\db\backends\mysql\base.py", line 435, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "C:\Python27\lib\site-packages\MySQLdb\__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\MySQLdb\connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+2015-09-06 11:14:08,237 [Thread-9:1444] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-06 11:14:58,618 [Thread-58:11788] [django.request:224] [ERROR]- Internal Server Error: /update_domain/100/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 141, in updateDomain
+    json_str = utils.saveAndGetJson4Xml(domain_id, cache_rules, acl)
+AttributeError: 'module' object has no attribute 'saveAndGetJson4Xml'
+2015-09-06 11:38:03,859 [Thread-58:11524] [django.request:224] [ERROR]- Internal Server Error: /update_domain/100/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 156, in updateDomain
+    req.session['current_js'] = JS_DICT["fail_update"] % reason
+KeyError: 'fail_update'
+2015-09-06 12:04:47,150 [Thread-58:2692] [django.request:143] [WARNING]- Not Found: /domain_manage/login.html
+2015-09-06 17:01:57,525 [Thread-57:12104] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 94, in deleteDomain
+    delete_obj = DiLianManager(id_obj.domain_name, id_obj.ip_str, id_obj.test_url)
+AttributeError: 'Domain' object has no attribute 'ip_str'
+2015-09-06 17:02:18,667 [Thread-60:4080] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-06 17:02:57,936 [Thread-120:10896] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 94, in deleteDomain
+    delete_obj = DiLianManager(id_obj.domain_name, id_obj.ip_str, id_obj.test_url)
+AttributeError: 'Domain' object has no attribute 'ip_str'
+2015-09-06 17:03:31,357 [Thread-121:6660] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 94, in deleteDomain
+    delete_obj = DiLianManager(id_obj.domain_name, id_obj.ip_str, id_obj.test_url)
+AttributeError: 'Domain' object has no attribute 'ip_str'
+2015-09-06 17:58:56,010 [Thread-3:7136] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 182, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+AttributeError: 'NoneType' object has no attribute 'text'
+2015-09-06 18:17:39,516 [Thread-115:7688] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/105/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    raise ValueError("The view %s.%s didn't return an HttpResponse object." % (callback.__module__, view_name))
+ValueError: The view cdn_manage.views.editDomain didn't return an HttpResponse object.
+2015-09-06 18:17:42,753 [Thread-116:7096] [django.request:224] [ERROR]- Internal Server Error: /edit_domain/104/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    raise ValueError("The view %s.%s didn't return an HttpResponse object." % (callback.__module__, view_name))
+ValueError: The view cdn_manage.views.editDomain didn't return an HttpResponse object.
+2015-09-06 19:01:00,887 [Thread-1099:11152] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 101, in deleteDomain
+    return HttpResponse(result)
+UnboundLocalError: local variable 'result' referenced before assignment
+2015-09-06 19:07:12,391 [Thread-1270:8112] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 101, in deleteDomain
+    return HttpResponse(result)
+UnboundLocalError: local variable 'result' referenced before assignment
+2015-09-06 19:08:47,770 [Thread-1327:8908] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 101, in deleteDomain
+    return HttpResponse(result)
+UnboundLocalError: local variable 'result' referenced before assignment
+2015-09-06 19:09:03,233 [Thread-1384:13232] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 101, in deleteDomain
+    return HttpResponse(result)
+UnboundLocalError: local variable 'result' referenced before assignment
+2015-09-07 13:01:05,082 [Thread-57:7104] [django.request:224] [ERROR]- Internal Server Error: /get_domain/105/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 178, in getDomainStatus
+    status, reason, resp = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 212, in getDomain
+    status, reason, resp = self.req(type, rq_url, rq_body)
+ValueError: too many values to unpack
+2015-09-07 13:01:24,408 [Thread-4:11164] [django.request:224] [ERROR]- Internal Server Error: /get_domain/105/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 178, in getDomainStatus
+    status, reason, resp = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 212, in getDomain
+    status, reason, resp = self.req(type, rq_url, rq_body)
+ValueError: too many values to unpack
+2015-09-07 13:01:24,572 [Thread-3:5276] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-07 14:29:19,910 [Thread-59:1184] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 95, in deleteDomain
+    status, reason, resp = delete_obj.delete(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 196, in delete
+    status, reason, resp = self.req(type, rq_url, rq_body, ETag)
+ValueError: too many values to unpack
+2015-09-07 14:29:36,999 [Thread-116:9924] [django.request:224] [ERROR]- Internal Server Error: /delete_domain/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 95, in deleteDomain
+    status, reason, resp = delete_obj.delete(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 196, in delete
+    status, reason, resp = self.req(type, rq_url, rq_body, ETag)
+ValueError: too many values to unpack
+2015-09-08 16:04:02,463 [Thread-119:10400] [django.request:224] [ERROR]- Internal Server Error: /update_domain/104/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 177, in updateDomain
+    req.session['current_js'] = JS_DICT["fail_update"] % Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-08 16:04:02,655 [Thread-120:2832] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-08 16:06:56,750 [Thread-182:10328] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 186, in getDomainStatus
+    status, reason, resp, Etag = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 227, in getDomain
+    response = self.req(type, rq_url, rq_body, etag)
+NameError: global name 'etag' is not defined
+2015-09-08 16:06:59,598 [Thread-183:6040] [django.request:224] [ERROR]- Internal Server Error: /get_domain/104/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 186, in getDomainStatus
+    status, reason, resp, Etag = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 227, in getDomain
+    response = self.req(type, rq_url, rq_body, etag)
+NameError: global name 'etag' is not defined
+2015-09-08 16:07:02,591 [Thread-184:2296] [django.request:224] [ERROR]- Internal Server Error: /get_domain/105/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 186, in getDomainStatus
+    status, reason, resp, Etag = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 227, in getDomain
+    response = self.req(type, rq_url, rq_body, etag)
+NameError: global name 'etag' is not defined
+2015-09-08 16:07:12,256 [Thread-241:9624] [django.request:224] [ERROR]- Internal Server Error: /get_domain/105/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 186, in getDomainStatus
+    status, reason, resp, Etag = delete_obj.getDomain(id_obj.distribution_id)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 227, in getDomain
+    response = self.req(type, rq_url, rq_body, etag)
+NameError: global name 'etag' is not defined
+2015-09-09 10:53:02,381 [Thread-56:11696] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:53:32,316 [Thread-59:11248] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:53:50,200 [Thread-61:10804] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:54:13,206 [Thread-1:5084] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:54:18,079 [Thread-59:3992] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:56:10,687 [Thread-117:1184] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:56:18,618 [Thread-120:7084] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:56:47,568 [Thread-177:916] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 10:57:07,697 [Thread-234:4160] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /refresh_cache/
+2015-09-09 11:29:22,904 [Thread-3:9976] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:29:27,657 [Thread-6:8320] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:30:01,858 [Thread-63:11760] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:30:39,167 [Thread-57:4192] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:32:02,257 [Thread-56:3148] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:32:22,823 [Thread-60:7352] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values("domain_name"))
+TypeError: 'unicode' object is not callable
+2015-09-09 11:32:42,825 [Thread-56:12548] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print type(Domain.objects.values(domain_name))
+NameError: global name 'domain_name' is not defined
+2015-09-09 11:35:08,486 [Thread-56:10588] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 202, in refreshCache
+    print Domain.objects.values('domain_name').domain_name
+AttributeError: 'ValuesQuerySet' object has no attribute 'domain_name'
+2015-09-09 11:38:29,535 [Thread-3:8712] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-09 11:52:49,635 [Thread-1:7752] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 99, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 2, in <module>
+    from cdn_manage import views
+  File "E:\cdn\cdn_manage\views.py", line 207
+    return HttpResponse("hello")
+         ^
+IndentationError: expected an indented block
+2015-09-09 11:52:49,848 [Thread-3:8236] [django.request:224] [ERROR]- Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\lib\site-packages\django\middleware\common.py", line 71, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 600, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 480, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 337, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 365, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\lib\site-packages\django\core\urlresolvers.py", line 360, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn\urls.py", line 12, in <module>
+    url(r'', include('cdn_manage.urls',namespace='cdn_manage')),
+  File "C:\Python27\lib\site-packages\django\conf\urls\__init__.py", line 26, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\lib\site-packages\django\utils\importlib.py", line 40, in import_module
+    __import__(name)
+  File "E:\cdn\cdn_manage\urls.py", line 2, in <module>
+    from cdn_manage import views
+  File "E:\cdn\cdn_manage\views.py", line 207
+    return HttpResponse("hello")
+         ^
+IndentationError: expected an indented block
+2015-09-09 12:22:29,684 [Thread-64:9700] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("Status").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:22:42,665 [Thread-121:9312] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("Status").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:29:49,256 [Thread-56:11668] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("Status").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:31:47,196 [Thread-61:2692] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("Status").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:32:00,493 [Thread-57:10532] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("Status").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:50:36,737 [Thread-58:10964] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:51:40,454 [Thread-58:10512] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1300, in XML
+    parser.feed(text)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1640, in feed
+    self._parser.Parse(data, 0)
+TypeError: must be string or read-only buffer, not instance
+2015-09-09 12:52:08,270 [Thread-58:8996] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:52:42,467 [Thread-58:12908] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:53:08,822 [Thread-58:8780] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1300, in XML
+    parser.feed(text)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1640, in feed
+    self._parser.Parse(data, 0)
+TypeError: must be string or read-only buffer, not instancemethod
+2015-09-09 12:53:25,058 [Thread-58:7232] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:54:01,694 [Thread-58:12708] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 12:55:26,323 [Thread-58:8684] [django.request:224] [ERROR]- Internal Server Error: /get_domain/102/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 193, in getDomainStatus
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-09 15:28:33,263 [Thread-56:12908] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("result").text
+AttributeError: 'NoneType' object has no attribute 'text'
+2015-09-09 15:32:26,931 [Thread-57:13060] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("result").text
+AttributeError: 'NoneType' object has no attribute 'text'
+2015-09-09 15:33:12,253 [Thread-56:11368] [django.request:224] [ERROR]- Internal Server Error: /refresh_cache/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 205, in refreshCache
+    task_status = Etree.fromstring(resp).find("result").text
+AttributeError: 'NoneType' object has no attribute 'text'
+2015-09-09 16:03:02,960 [Thread-299:2776] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-09 16:31:09,809 [Thread-1424:6484] [django.request:143] [WARNING]- Not Found: /refresh_cache/window.location.reload()
+2015-09-10 11:02:33,719 [Thread-57:11952] [django.request:99] [WARNING]- Forbidden (CSRF token missing or incorrect.): /bandwidth/
+2015-09-10 11:02:33,808 [Thread-58:6728] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-10 11:11:58,155 [Thread-1:8396] [django.request:224] [ERROR]- Internal Server Error: /bandwidth/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 249, in bandwidth
+    status, reason, resp = obj.bandwidthMap(domain_name, start, end)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 275, in bandwidthMap
+    LOG.info("UrlProgress status:%s, req_id: %s, reason:%s, resp:%s" % (status, req_id, reason, resp))
+NameError: global name 'req_id' is not defined
+2015-09-10 16:18:59,085 [Thread-65:4372] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 61, in domainManage
+    xml_name = domain_name + random
+TypeError: coercing to Unicode: need string or buffer, UUID found
+2015-09-10 16:18:59,270 [Thread-66:6108] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-10 16:20:34,500 [Thread-1:4624] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 71, in domainManage
+    status, reason, resp = create_obj.create()
+  File "E:\cdn\cdn_manage\CdnApi.py", line 180, in create
+    response, resp = self.req(type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-10 16:20:34,786 [Thread-3:11628] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 71, in domainManage
+    status, reason, resp = create_obj.create()
+  File "E:\cdn\cdn_manage\CdnApi.py", line 180, in create
+    response, resp = self.req(type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-10 16:25:18,865 [Thread-1:8248] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 71, in domainManage
+    status, reason, resp = create_obj.create()
+  File "E:\cdn\cdn_manage\CdnApi.py", line 180, in create
+    response, resp = self.req(type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-10 16:25:42,825 [Thread-20:9280] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 71, in domainManage
+    status, reason, resp = create_obj.create()
+  File "E:\cdn\cdn_manage\CdnApi.py", line 180, in create
+    response, resp = self.req(type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-09-10 18:59:46,815 [Thread-120:6124] [django.request:143] [WARNING]- Not Found: /handler_cache/submenu2.html
+2015-09-11 12:18:03,369 [Thread-3450:6920] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-11 15:05:23,157 [Thread-340:10668] [django.request:224] [ERROR]- Internal Server Error: /log_download/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 299, in logDownload
+    result = Etree.fromstring(resp).find("Message").text
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1301, in XML
+    return parser.close()
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1654, in close
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: no element found: line 1, column 0
+2015-09-11 15:32:25,539 [Thread-58:12468] [django.request:224] [ERROR]- Internal Server Error: /log_download_list/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 303, in logDownloadList
+    return render_to_response("log_downLoad.html", locals())
+  File "C:\Python27\lib\site-packages\django\shortcuts\__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 162, in render_to_string
+    t = get_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 138, in get_template
+    template, origin = find_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 131, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: log_downLoad.html
+2015-09-11 15:33:23,980 [Thread-115:2368] [django.request:143] [WARNING]- Not Found: /log_download/
+2015-09-11 15:33:38,467 [Thread-172:10968] [django.request:143] [WARNING]- Not Found: /log_download/

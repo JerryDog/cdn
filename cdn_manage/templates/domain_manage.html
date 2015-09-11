@@ -1,0 +1,636 @@
+{% extends "base.html" %} 
+{% block title %}<title>域名管理</title>{% endblock %} 
+
+{% block content %} 
+
+			<!-- start: Content -->
+			<div id="content" class="span10">
+			
+			
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/">Home</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/domain_manage/">Domain Manager</a></li>
+			</ul>
+
+                <div id="alertSucc" class="alert alert-success" style="position:absolute;z-index:1000;display:none">
+                    <a href="javascript:closeAlert('#alertSucc')" class="close">
+                     &times;
+                    </a>
+                    <span id="succContent"></span>
+                </div>
+                <div id="alertFail" class="alert alert-danger" style="position:absolute;z-index:1000;display:none">
+                    <a href="javascript:closeAlert('#alertFail')" class="close">
+                     &times;
+                    </a>
+                    <span id="failContent"></span>
+                </div>
+
+
+                <div class="text-right" style="margin-bottom:10px;">
+                    <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal"
+   data-target="#myModal" style="margin-right:20px;">创建域</a>
+                     <a href="#" id="deleteButton" class="btn btn-danger btn-lg" role="button" data-toggle="modal"
+   data-target="#confirmDelete" style="margin-right:20px;">删除域</a>
+                </div>
+
+
+
+
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i><img style="height:16px;" src="/static/img/cdn.png"></i><span class="break"></span>Domains</h2>
+					    <!-- <div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>-->
+					</div>
+					<div class="box-content">
+						<table id="domain_table" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+                                  <th>
+                                      <label class="checkbox">
+                                                <input type="checkbox" name="selectAll"  onClick="selectAll(this)">
+                                      </label>
+                                  </th>
+								  <th>加速域名</th>
+								  <th>源站</th>
+                                  <th>别名</th>
+                                  <th>添加日期</th>
+								  <th>状态</th>
+								  <th>操作</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+                          {% for d in domains%}
+							<tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <div class="checker">
+                                             <span>
+                                             <input class="states" type="checkbox" name="domains" value="{{ d.id }}" />
+                                             </span>
+                                        </div>
+                                    </label>
+
+                                </td>
+								<td>{{ d.domain_name }}</td>
+								<td class="center">
+                                    {{ d.ip_list }}
+                                </td>
+                                <td class="center">{{ d.domain_cname }}</td>
+								<td class="center">{{ d.create_time|date:"Y-m-d H:i:s" }}</td>
+								<td class="center" id="status{{ d.id }}">
+                                    {% ifequal d.domain_status 'InProgress' %}
+									    <span class="label label-warning">{{ d.domain_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal d.domain_status 'Deployed' %}
+                                         <span class="label label-success">{{ d.domain_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal d.domain_status 'InCheck' %}
+                                         <span class="label label-info">{{ d.domain_status }}</span>
+                                    {% endifequal %}
+                                    {% ifequal d.domain_status 'Faild' %}
+                                         <span class="label label-important">{{ d.domain_status }}</span>
+                                    {% endifequal %}
+								</td>
+								<td class="center">
+
+                                        <a href="javascript:editDomainAjax('{{ d.id }}')"
+                                           class="btn btn-primary btn-lg" role="button">
+                                        编辑
+                                        </a>
+                                        <button type="button" onclick="refreshButton(this,'{{ d.id }}')"
+                                           class="btn btn-info btn-lg">
+                                        刷新
+                                        </button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            更多 <span class="caret"></span>
+                                         </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">功能</a></li>
+                                            <li><a href="#">另一个功能</a></li>
+                                            <li><a href="#">其他</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">分离的链接</a></li>
+                                        </ul>
+                                    </div>
+								</td>
+							</tr>
+                          {% endfor %}
+						  </tbody>
+					  </table>            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+
+			
+
+
+    
+
+	</div><!--/.fluid-container-->
+	
+			<!-- end: Content -->
+    <form role="form" id="create_domain_form" method="POST" action="/domain_manage/">
+        {% csrf_token %}
+	    <div class="modal hide fade"  id="myModal">
+
+		    <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal">×</button>
+			    <h3>创建域</h3>
+		    </div>
+		    <div class="modal-body">
+			    <p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#home" data-toggle="tab">创建域</a>
+                        </li>
+                        <li>
+                            <a href="#rules" data-toggle="tab">缓存规则</a>
+                        </li>
+                        <li>
+                            <a href="#ac" data-toggle="tab">访问控制</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="home">
+                            <p>
+                                <div class="form-group">
+                                    <label for="domain_name">域名 <font color="red">*</font></label>
+                                        <input type="text" class="form-control" id="domain_name"
+                                        placeholder="example: www.test.com" name="domain_name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ip_list">IP地址列表 <font color="red">*</font></label>
+                                        <textarea  class="form-control" rows="3" id="ip_list"
+                                        placeholder="多个IP请用英文逗号分隔" name="ip_list" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="test_url">测试URL <font color="red">*</font></label>
+                                        <input type="url" class="form-control" id="test_url"
+                                        placeholder="example: http://www.test.com" name="test_url" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ignore_param_req">是否禁用 <font color="red">*</font>
+                                    </label>
+                                    <input type="checkbox" class="form-control" id="ignore_param_req"
+                                        name="ignore_param_req">
+                                </div>
+
+                <input type="text" name="cache_rules" id="cache_rules"  style="display:none;">
+                <input type="text" name="acl" id="acl"  style="display:none;">
+                <input type="text" name="session_id" id="session_id"  style="display:none;"
+                    value="{{ session_id }}">
+                            </p>
+
+                        </div>
+
+   <div class="tab-pane fade" id="rules">
+       <p>
+         <table class="table table-hover table-striped table-bordered table-condensed" id="tabCache">
+            <tbody>
+
+				<tr>
+                    <td  EditType="TextBox">缓存类型</td>
+                    <td>从不缓存</td>
+                    <td>忽略参数请求</td>
+                    <td  EditType="TextBox">缓存时间</td>
+                    <td name="Num"></td>
+                </tr>
+			</tbody>
+		</table>
+
+        <br />
+        <a href="javascript:AddRow(document.getElementById('tabCache'),1)" class="btn btn-primary btn-sm" role="button">新增</a>
+
+        </p>
+   </div>
+
+   <div class="tab-pane fade" id="ac">
+       <p>
+         <table class="table table-hover table-striped table-bordered table-condensed" id="tabAcl">
+            <tbody>
+
+				<tr>
+                    <td  EditType="TextBox">链接类型</td>
+                    <td  EditType="TextBox">白名单列表</td>
+                    <td  EditType="TextBox">黑名单列表</td>
+                    <td  EditType="TextBox">阻止IP列表</td>
+                    <td name="Num"></td>
+                </tr>
+			</tbody>
+		</table>
+
+        <br />
+        <a href="javascript:AddRow4Acl(document.getElementById('tabAcl'),1)" class="btn btn-primary btn-sm" role="button">新增</a>
+
+        </p>
+   </div>
+</div>
+
+			    </p>
+		    </div>
+		    <div class="modal-footer">
+			    <a href="#" class="btn" data-dismiss="modal">取消</a>
+                <button style="display:none" id="create_domain_button" type="submit" class="btn btn-primary">创建域</button>
+                <button type="button" onclick="getCacheAcl()" class="btn btn-primary">创建域</button>
+            </div>
+
+	    </div>
+   </form>
+
+
+   <!-- 编辑域表单 start-->
+        <form role="form" id="edit_domain_form" method="POST" action="/domain_manage/">
+        {% csrf_token %}
+	    <div class="modal hide fade" id="editDomainModal">
+
+		    <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal">×</button>
+			    <h3>编辑域</h3>
+		    </div>
+		    <div id="editModalBody" class="modal-body">
+
+            </div>
+
+
+		    <div class="modal-footer">
+			    <a href="#" class="btn" data-dismiss="modal">取消</a>
+                <button style="display:none" id="edit_domain_button" type="submit" class="btn btn-primary">创建域</button>
+                <button type="button" onclick="getEditCacheAcl()" class="btn btn-primary">保存</button>
+            </div>
+
+	    </div>
+   </form>
+   <!-- 编辑域表单 end-->
+
+    <div class="modal hide fade" id="confirmDelete">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>系统提示</h3>
+		</div>
+		<div class="modal-body">
+			<p>确认删除本条记录？</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">取消</a>
+			<a href="javascript:deleteDomain()" class="btn btn-primary">确认</a>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block js %}
+<script>
+
+function selectAll(obj){
+   if (obj.checked){
+        $(".states").each( function() {
+            $(this).parents().find('span').addClass('checked');
+        });
+   }else{
+        $(".states").each( function() {
+             $(this).parents().find('span').removeClass('checked');
+        });
+   };
+};
+
+function deleteDomain(){
+    var check_val = "";
+    $(".states").each( function() {
+             if($(this).parent().hasClass('checked')){
+                check_val = check_val + $(this).val() + ",";
+             };
+    });
+    post_with_ajax(check_val);
+};
+
+function post_with_ajax(text){
+      return $.ajax({
+        type: "post",
+        url: "/delete_domain/",
+        data: {"domain_ids": text},
+        dataType: "text",
+        success: function(data) {
+            //$("#confirmDelete").modal('hide');
+            //$("#domain_table").html(data);
+            //$("#ddAlert").fadeIn();
+            //setTimeout("closeddAlert()", 2000);
+            if (data == 1){
+                window.location.reload();
+            }else{
+                alert(data);
+                window.location.reload();
+            }
+            return console.log("post ok:" + text);
+        },
+        error: function() {
+          //alert("失败了！！找佳华！");
+          if (text==''){
+            alert('请选择至少一个域名来删除！');
+            window.location.reload();
+          }else{
+            return alert("error:pose with ajax!");
+            window.location.reload();
+          }
+        }
+      });
+}
+
+function refreshButton(obj,domain_id){
+    $(obj).attr("disabled","disabled");
+    refreshStatusAjax(obj,domain_id)
+}
+
+function refreshStatusAjax(obj,domain_id){
+       return $.ajax({
+        type: "GET",
+        url: "/get_domain/"+domain_id+"/",
+        data: {"domain_ids": domain_id},
+        success: function(data) {
+            if (data == "InProgress"){
+                str = '<span class="label label-warning">InProgress</span>';
+            }else if (data == "Deployed"){
+                str = '<span class="label label-success">Deployed</span>';
+            }else if (data == "InCheck"){
+                str = '<span class="label label-info">InCheck</span>';
+            }else if (data == "Faild"){
+                str = '<span class="label label-important">Faild</span>';
+            }else{
+                str = '<span class="label label-important">'+data+'</span>';
+            }
+            $("#status"+domain_id).html(str);
+            $(obj).removeAttr("disabled");
+        },
+        error: function() {
+          //alert("失败了！！找佳华！");
+          return alert("error:pose with ajax!");
+        }
+      });
+}
+
+function editDomainAjax(domain_id){
+       return $.ajax({
+        type: "post",
+        url: "/edit_domain/"+domain_id+"/",
+        data: {"domain_ids": domain_id},
+        success: function(data) {
+            $("#editModalBody").html(data);
+            $("#edit_domain_form").attr("action","/update_domain/"+domain_id+"/")
+            $("#editDomainModal").modal('show');
+
+        },
+        error: function() {
+          //alert("失败了！！找佳华！");
+          return alert("error:pose with ajax!");
+        }
+      });
+}
+
+function closeAlert(alertId){
+    $(alertId).fadeOut(3000);
+}
+
+
+function getCacheAcl(){
+    document.getElementById("cache_rules").value = getCacheStr("tabCache");
+    document.getElementById("acl").value = getAclStr("tabAcl");
+    $("#create_domain_button").click();
+}
+
+function getEditCacheAcl(){
+    document.getElementById("edit_cache_rules").value = getCacheStr("editTabCache");
+    document.getElementById("edit_acl").value = getAclStr("edmTabAcl");
+    $("#edit_domain_button").click();
+}
+
+
+
+function getCacheStr(tab_id){
+    var cache_all_str = "";
+    var tabCache = document.getElementById(tab_id);
+    for (var i=1; i<tabCache.rows.length; i++) {
+        var cache_row_str = "";
+        for (var j=0; j<tabCache.rows[i].cells.length; j++) {
+            if(j == 4) continue;
+            cell_str = tabCache.rows[i].cells[j].innerText;
+            if(j == 1||j == 2) {
+                if (tabCache.rows[i].cells[j].getElementsByTagName("input")[0].checked==true){
+                    cell_str = "1";
+                }
+                else
+                {
+                    cell_str = "0";
+                }
+            }
+            cache_row_str = cache_row_str + cell_str;
+            if(j < tabCache.rows[i].cells.length -2) cache_row_str = cache_row_str + ",";
+        }
+        cache_all_str = cache_all_str + cache_row_str
+        if(i < tabCache.rows.length -1) cache_all_str = cache_all_str + ";";
+    }
+    return cache_all_str;
+}
+
+function getAclStr(tab_id){
+    var acl_all_str = "";
+    var tabAcl = document.getElementById(tab_id);
+    for (var i=1; i<tabAcl.rows.length; i++) {
+        var acl_row_str = "";
+        for (var j=0; j<tabAcl.rows[i].cells.length; j++) {
+            if(j == 4) continue;
+            acl_row_str = acl_row_str + tabAcl.rows[i].cells[j].innerText;
+            if(j < tabAcl.rows[i].cells.length -2) acl_row_str = acl_row_str + ",";
+        }
+        acl_all_str = acl_all_str + acl_row_str
+        if(i < tabAcl.rows.length -1) acl_all_str = acl_all_str + "%";
+    }
+
+    return acl_all_str;
+};
+
+
+
+//begin
+//设置多个表格可编辑
+function EditTables() {
+    for (var i = 0; i < arguments.length; i++) {
+        SetTableCanEdit(arguments[i]);
+    }
+}
+
+//设置表格是可编辑的
+function SetTableCanEdit(table) {
+    for (var i = 1; i < table.rows.length; i++) {
+        SetRowCanEdit(table.rows[i]);
+    }
+}
+
+function SetRowCanEdit(row) {
+    for (var j = 0; j < row.cells.length; j++) {
+
+        //如果当前单元格指定了编辑类型，则表示允许编辑
+        var editType = row.cells[j].getAttribute("EditType");
+        if (!editType) {
+            //如果当前单元格没有指定，则查看当前列是否指定
+            editType = row.parentNode.rows[0].cells[j].getAttribute("EditType");
+        }
+        if (editType) {
+            row.cells[j].onclick = function () {
+                EditCell(this);
+            }
+        }
+    }
+
+}
+
+//设置指定单元格可编辑
+function EditCell(element, editType) {
+
+    var editType = element.getAttribute("EditType");
+    if (!editType) {
+        //如果当前单元格没有指定，则查看当前列是否指定
+        editType = element.parentNode.parentNode.rows[0].cells[element.cellIndex].getAttribute("EditType");
+    }
+
+    switch (editType) {
+        case "TextBox":
+            CreateTextBox(element, element.innerHTML);
+            break;
+        case "DropDownList":
+            CreateDropDownList(element);
+            break;
+        default:
+            break;
+    }
+}
+
+//为单元格创建可编辑输入框
+function CreateTextBox(element, value) {
+    //检查编辑状态，如果已经是编辑状态，跳过
+    var editState = element.getAttribute("EditState");
+    if (editState != "true") {
+        //创建文本框
+        var textBox = document.createElement("INPUT");
+        textBox.type = "text";
+        textBox.className = "EditCell_TextBox";
+
+
+        //设置文本框当前值
+        if (!value) {
+            value = element.getAttribute("Value");
+        }
+        textBox.value = value;
+
+        //设置文本框的失去焦点事件
+        textBox.onblur = function () {
+            CancelEditCell(this.parentNode, this.value);
+        }
+        //向当前单元格添加文本框
+        ClearChild(element);
+        element.appendChild(textBox);
+        textBox.focus();
+        textBox.select();
+
+        //改变状态变量
+        element.setAttribute("EditState", "true");
+        element.parentNode.parentNode.setAttribute("CurrentRow", element.parentNode.rowIndex);
+    }
+}
+
+//取消单元格编辑状态
+function CancelEditCell(element, value, text) {
+    element.setAttribute("Value", value);
+    if (text) {
+        element.innerHTML = text;
+    } else {
+        element.innerHTML = value;
+    }
+    element.setAttribute("EditState", "false");
+
+}
+
+//清空指定对象的所有字节点
+function ClearChild(element) {
+    element.innerHTML = "";
+}
+
+//添加行
+function AddRow(table, index) {
+    var newTr = table.insertRow();
+    var newTd0 = newTr.insertCell();
+    var newTd1 = newTr.insertCell();
+    var newTd2 = newTr.insertCell();
+    var newTd3 = newTr.insertCell();
+    var newTd4 = newTr.insertCell();
+    newTd0.innerHTML = '<td class=\"center\" value=\".jpg\" name=\"hehe\">.jpg</td>';
+    newTd1.innerHTML = '<td><input type=\"checkbox\" id=\"cache_rules1\" onclick=\"smallChange(this)\"  /></td>';
+    newTd2.innerHTML = '<td><input type=\"checkbox\"  id=\"cache_rules2\"  onclick=\"smallChange(this)\"  /></td>';
+    newTd3.innerHTML = '<td class=\"center\" value=\"0\">0</td>';
+    newTd4.innerHTML = '<td align=\"center\" bgcolor=\"#FFFFFF\"><button type=\"button\" class=\"btn btn-danger  btn-mini\" onclick=\"DeleteRow(\'tabCache\',this)\">X</button></td>';
+    SetRowCanEdit(newTr);
+    return newTr;
+}
+
+function AddRow4Acl(table, index) {
+    var newTr = table.insertRow();
+    var newTd0 = newTr.insertCell();
+    var newTd1 = newTr.insertCell();
+    var newTd2 = newTr.insertCell();
+    var newTd3 = newTr.insertCell();
+    var newTd4 = newTr.insertCell();
+    newTd0.innerHTML = '<td class=\"center\" value=\".jpg\">.jpg</td>';
+    newTd1.innerHTML = '<td class=\"center\"></td>';
+    newTd2.innerHTML = '<td class=\"center\"></td>';
+    newTd3.innerHTML = '<td class=\"center\"></td>';
+    newTd4.innerHTML = '<td align=\"center\" bgcolor=\"#FFFFFF\"><button type=\"button\" class=\"btn btn-danger  btn-mini\" onclick=\"DeleteRow(\'tabAcl\',this)\">X</button></td>';
+    SetRowCanEdit(newTr);
+    return newTr;
+}
+
+//删除行
+
+function DeleteRow(tableID, obj) {//参数为表格ID，触发对象
+    //获得触发对象的行号，parentElement的个数取决于触发对象为TR的第几级子项，input=>td=>tr，所以parentElement有两个
+    var rowIndex = obj.parentElement.parentElement.rowIndex;
+    //var table = document.getElementById(tableID).deleteRow(rowIndex);
+    obj.parentElement.parentElement.parentElement.deleteRow(rowIndex); //再简化：省略tableID参数
+}
+
+//checkbox 改变状态
+function smallChange(obj) {
+    if (obj.checked == true){
+        obj.checked = true;
+    }
+    else
+    {
+        obj.checked = false;
+    }
+}
+
+
+</script>
+
+<script type="text/javascript">
+    var tabCache = document.getElementById("tabCache");
+
+    // 设置表格可编辑
+    // 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
+    EditTables(tabCache);
+    {{ current_js|safe }}
+
+</script>
+{% endblock %}
