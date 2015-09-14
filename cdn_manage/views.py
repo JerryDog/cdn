@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from models import Domain, CacheRules, AccessControl, TaskList
 from django.conf import settings
+from ks_auth import getTokenFromKS
 import xml.etree.ElementTree as Etree
 import os, sys, json, datetime
 import utils
@@ -33,14 +34,48 @@ JS_DICT = {
 }
 
 def index(req):
-    return render_to_response('index.html')
+    username = req.COOKIES.get('username')
+    return render_to_response('index.html', locals())
 
+@csrf_exempt
 def login(req):
-     return render_to_response('login.html')
+    if req.method == "POST":
+        username = req.POST.get('username')
+        password = req.POST.get('password')
+        project_list = getTokenFromKS(username, password)
+        if project_list:
+            req.session['project_id'] = project_list[0][1]
+            response = HttpResponseRedirect('/domain_manage/')
+            response.set_cookie('username', username, 600)
+            return response
+        else:
+            error = '用户名密码错误'
+            return render_to_response('login.html', locals())
+    else:
+        return render_to_response('login.html')
+
+def logout(req):
+    if req.COOKIES.get('username'):
+        response = HttpResponseRedirect('/login/')
+        response.delete_cookie('username')
+        return response
+    else:
+        return render_to_response('login.html')
+
+@csrf_exempt
+def switchProject(req):
+    if req.method == "POST":
+        new_project_id = req.POST.get('new_project_id')
+        req.session['project_id'] = new_project_id
+        return HttpResponse('1')
 
 @csrf_exempt
 def domainManage(req):
     if req.method == "POST":
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
         if not req.session.has_key("session_id"):
             req.session['current_js'] = JS_DICT["fail_create"] % 'Null session_id'
             return HttpResponseRedirect('/domain_manage/')
@@ -91,8 +126,9 @@ def domainManage(req):
             del req.session["current_js"]
         session_id = '%s' % uuid.uuid1()
         req.session['session_id'] = session_id
-    domains = Domain.objects.all()
-    return render_to_response('domain_manage.html', locals())
+        domains = Domain.objects.all()
+        username = req.COOKIES.get('username')
+        return render_to_response('domain_manage.html', locals())
 
 @csrf_exempt
 def deleteDomain(req):
@@ -247,6 +283,7 @@ def handlerCache(req):
                     task_obj = TaskList.objects.filter(task_id=t.task_id)
                     task_obj.update(task_status=new_task_status)
         tasks = TaskList.objects.all()
+        username = req.COOKIES.get('username')
         return render_to_response("refresh_cache.html", locals())
 
 @csrf_exempt
@@ -269,6 +306,7 @@ def bandwidth(req):
         return HttpResponse(result)
     else:
         domains = Domain.objects.all()
+        username = req.COOKIES.get('username')
         return render_to_response("bandwidth.html", locals())
 
 @csrf_exempt
@@ -287,6 +325,7 @@ def analyticsServer(req):
         return HttpResponse(result)
     else:
         domains = Domain.objects.all()
+        username = req.COOKIES.get('username')
         return render_to_response("analytics_server.html", locals())
 
 @csrf_exempt
@@ -305,4 +344,5 @@ def logDownloadList(req):
             return HttpResponse(result)
     else:
         domains = Domain.objects.all()
+        username = req.COOKIES.get('username')
         return render_to_response("log_downLoad_list.html", locals())

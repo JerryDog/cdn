@@ -58,19 +58,22 @@
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
-
+                        <li class="dropdown" style="top:5px;">
+                            <select onchange="switchProject(this)">
+                                {% for p in porject_list %}
+                                <option value="{{ p[1] }}">{{ p[0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> Dennis Ji
+								<i class="halflings-icon white user"></i> {{ username }}
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
-								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+
+								<li><a href="/logout/"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -182,7 +185,23 @@
 
 		<script src="/static/js/custom.js"></script>
 
+        <script>
+            function switchProject(obj){
+                return $.ajax({
+                    type: "POST",
+                    url: "/switch_project/",
+                    async: false,
+                    data: {"new_project_id", obj.value},
+                    success: function(data) {
+                        window.location.reload();
+                    },
+                    error: function() {
+                        alert("error");
+                    },
+             });
+           }
 
+        </script>
 
         {% block js %}{% endblock %}
 	<!-- end: JavaScript-->

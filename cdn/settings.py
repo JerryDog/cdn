@@ -116,6 +116,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cdn_manage.middleware.QtsAuthenticationMiddleware',
 )
 
 ROOT_URLCONF = 'cdn.urls'
@@ -159,6 +160,7 @@ TEMPLATE_DIRS=(
 
 STATIC_URL = '/static/'
 
+KEYSTONE="10.240.56.1:35357"
 XML_PATH = 'E:\cdn\cdn_manage\Xml\%s.xml'
 CREATE_XML_PATH = 'E:\cdn\cdn_manage\create-xml.py'
 DINON_KEY = 'test'
