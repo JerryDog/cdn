@@ -72,10 +72,6 @@ def switchProject(req):
 @csrf_exempt
 def domainManage(req):
     if req.method == "POST":
-        if not req.session.has_key("project_id"):
-            return HttpResponseRedirect('/login/')
-        else:
-            project_id = req.session['project_id']
         if not req.session.has_key("session_id"):
             req.session['current_js'] = JS_DICT["fail_create"] % 'Null session_id'
             return HttpResponseRedirect('/domain_manage/')
@@ -121,12 +117,16 @@ def domainManage(req):
             req.session['current_js'] = JS_DICT["fail_create"] % Etree.fromstring(resp).find("Message").text
         return HttpResponseRedirect('/domain_manage/')
     else:
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
         if req.session.has_key("current_js"):
             current_js = req.session.get('current_js')
             del req.session["current_js"]
         session_id = '%s' % uuid.uuid1()
         req.session['session_id'] = session_id
-        domains = Domain.objects.all()
+        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
         return render_to_response('domain_manage.html', locals())
 
@@ -282,7 +282,11 @@ def handlerCache(req):
                     #update status
                     task_obj = TaskList.objects.filter(task_id=t.task_id)
                     task_obj.update(task_status=new_task_status)
-        tasks = TaskList.objects.all()
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
+        tasks = TaskList.objects.all(project_id=project_id)
         username = req.COOKIES.get('username')
         return render_to_response("refresh_cache.html", locals())
 
@@ -305,7 +309,11 @@ def bandwidth(req):
             result = Etree.fromstring(resp).find("Message").text
         return HttpResponse(result)
     else:
-        domains = Domain.objects.all()
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
+        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
         return render_to_response("bandwidth.html", locals())
 
@@ -324,7 +332,11 @@ def analyticsServer(req):
             result = Etree.fromstring(resp).find("Message").text
         return HttpResponse(result)
     else:
-        domains = Domain.objects.all()
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
+        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
         return render_to_response("analytics_server.html", locals())
 
@@ -343,6 +355,10 @@ def logDownloadList(req):
             result = status
             return HttpResponse(result)
     else:
-        domains = Domain.objects.all()
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
+        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
         return render_to_response("log_downLoad_list.html", locals())

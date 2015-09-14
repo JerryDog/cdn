@@ -10,7 +10,7 @@ class Domain(models.Model):
     distribution_id = models.CharField(max_length=64)
     ip_list = models.CharField(max_length=128)
     etag = models.CharField(max_length=64)
-    use_id = models.CharField(max_length=64)
+    project_id = models.CharField(max_length=64)
     test_url = models.URLField()
     ignore_param_req = models.BooleanField()
     create_time = models.DateTimeField(auto_now_add=True)
@@ -32,6 +32,7 @@ class AccessControl(models.Model):
 
 class TaskList(models.Model):
     task_id = models.CharField(max_length=64)
+    project_id = models.CharField(max_length=64)
     task_type = models.CharField(max_length=32)
     task_content = models.CharField(max_length=1024)
     task_status = models.CharField(max_length=18)
