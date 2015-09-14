@@ -35,6 +35,9 @@ JS_DICT = {
 def index(req):
     return render_to_response('index.html')
 
+def login(req):
+     return render_to_response('login.html')
+
 @csrf_exempt
 def domainManage(req):
     if req.method == "POST":

@@ -1345,3 +1345,6 @@ Traceback (most recent call last):
 TemplateDoesNotExist: log_downLoad.html
 2015-09-11 15:33:23,980 [Thread-115:2368] [django.request:143] [WARNING]- Not Found: /log_download/
 2015-09-11 15:33:38,467 [Thread-172:10968] [django.request:143] [WARNING]- Not Found: /log_download/
+2015-09-14 10:46:32,614 [Thread-67:8360] [django.request:143] [WARNING]- Not Found: /login/img/bg-login.jpg
+2015-09-14 10:46:45,516 [Thread-119:6124] [django.request:143] [WARNING]- Not Found: /login/img/bg-login.jpg
+2015-09-14 10:47:29,940 [Thread-174:1340] [django.request:143] [WARNING]- Not Found: /img/bg-login.jpg

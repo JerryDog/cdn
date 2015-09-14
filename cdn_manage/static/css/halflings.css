@@ -522,7 +522,7 @@ html .halflings {
   height: 14px;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons_halflings.svg");
+  background-image: url("/static/img/glyphicons_halflings.svg");
   background-position: 0 0;
   background-repeat: no-repeat;
   vertical-align: top;
@@ -531,13 +531,13 @@ html .halflings {
   *margin-right: .3em;
 }
 .no-inlinesvg .halflings-icon {
-  background-image: url("../img/glyphicons_halflings.png");
+  background-image: url("/static/img/glyphicons_halflings.png");
 }
 .halflings-icon.white {
-  background-image: url("../img/glyphicons_halflings-white.svg");
+  background-image: url("/static/img/glyphicons_halflings-white.svg");
 }
 .no-inlinesvg .halflings-icon.white {
-  background-image: url("../img/glyphicons_halflings-white.png");
+  background-image: url("/static/img/glyphicons_halflings-white.png");
 }
 .halflings-icon.glass {
   background-position: 0 0;
