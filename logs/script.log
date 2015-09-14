@@ -1424,3 +1424,53 @@ Traceback (most recent call last):
   File "C:\Python27\lib\socket.py", line 571, in create_connection
     raise err
 error: [Errno 10060] 
+2015-09-14 19:16:56,440 [Thread-56:4604] [django.request:224] [ERROR]- Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 45, in login
+    project_list = getTokenFromKS(username, password)
+  File "E:\cdn\cdn_manage\ks_auth.py", line 12, in getTokenFromKS
+    conn.request("POST","/v2.0/tokens", params, headers)
+  File "C:\Python27\lib\httplib.py", line 973, in request
+    self._send_request(method, url, body, headers)
+  File "C:\Python27\lib\httplib.py", line 1007, in _send_request
+    self.endheaders(body)
+  File "C:\Python27\lib\httplib.py", line 969, in endheaders
+    self._send_output(message_body)
+  File "C:\Python27\lib\httplib.py", line 829, in _send_output
+    self.send(msg)
+  File "C:\Python27\lib\httplib.py", line 791, in send
+    self.connect()
+  File "C:\Python27\lib\httplib.py", line 772, in connect
+    self.timeout, self.source_address)
+  File "C:\Python27\lib\socket.py", line 571, in create_connection
+    raise err
+error: [Errno 10060] 
+2015-09-14 19:22:45,131 [Thread-110:5944] [django.request:224] [ERROR]- Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 45, in login
+    project_list = getTokenFromKS(username, password)
+  File "E:\cdn\cdn_manage\ks_auth.py", line 15, in getTokenFromKS
+    conn.request("POST","/v2.0/tokens", params, headers)
+  File "C:\Python27\lib\httplib.py", line 973, in request
+    self._send_request(method, url, body, headers)
+  File "C:\Python27\lib\httplib.py", line 1007, in _send_request
+    self.endheaders(body)
+  File "C:\Python27\lib\httplib.py", line 969, in endheaders
+    self._send_output(message_body)
+  File "C:\Python27\lib\httplib.py", line 829, in _send_output
+    self.send(msg)
+  File "C:\Python27\lib\httplib.py", line 791, in send
+    self.connect()
+  File "C:\Python27\lib\httplib.py", line 772, in connect
+    self.timeout, self.source_address)
+  File "C:\Python27\lib\socket.py", line 571, in create_connection
+    raise err
+error: [Errno 10060] 

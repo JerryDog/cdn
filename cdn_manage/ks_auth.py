@@ -7,16 +7,22 @@ from django.conf import settings
 def getTokenFromKS(username, password):
     headers = {"Content-type":"application/json" }
     KEYSTONE = settings.KEYSTONE
-    conn = httplib.HTTPConnection(KEYSTONE)
+    try:
+        conn = httplib.HTTPConnection(KEYSTONE)
+    except:
+        return 'ConnError'
     params = '{"auth": {"passwordCredentials": {"username": "%s", "password": "%s"}}}' % (username, password)
-    conn.request("POST","/v2.0/tokens", params, headers)
+    try:
+        conn.request("POST","/v2.0/tokens", params, headers)
+    except:
+        return 'ConnError'
     response = conn.getresponse()
     data = response.read()
     dd = json.loads(data)
     try:
     	apitoken = dd['access']['token']['id']
     except:
-	return False
+	    return False
     user_id = dd['access']['user']['id']
     rq_headers = {"X-Auth-Token": "%s" % apitoken}
     conn.request('GET' , '/v3/users/%s/projects' % user_id, '', rq_headers)

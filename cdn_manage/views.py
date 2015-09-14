@@ -43,13 +43,16 @@ def login(req):
         username = req.POST.get('username')
         password = req.POST.get('password')
         project_list = getTokenFromKS(username, password)
-        if project_list:
+        if project_list and project_list != 'ConnError':
             req.session['project_id'] = project_list[0][1]
             response = HttpResponseRedirect('/domain_manage/')
             response.set_cookie('username', username, 600)
             return response
         else:
-            error = '用户名密码错误'
+            if project_list == 'ConnError':
+                error = '链接超时'
+            else:
+                error = '用户名密码错误'
             return render_to_response('login.html', locals())
     else:
         return render_to_response('login.html')
