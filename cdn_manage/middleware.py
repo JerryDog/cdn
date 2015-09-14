@@ -6,4 +6,4 @@ class QtsAuthenticationMiddleware(object):
              if "favorite_color1" in request.COOKIES:
                  pass
              else:
-                 return HttpResponseRedirect("http://lqqm.net")
+                 return HttpResponseRedirect("/login/")
