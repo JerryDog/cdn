@@ -60,8 +60,12 @@
 					<ul class="nav pull-right">
                         <li class="dropdown" style="top:5px;">
                             <select onchange="switchProject(this)">
-                                {% for p in porject_list %}
-                                <option value="{{ p[1] }}">{{ p[0] }}</option>
+                                {% for p in project_list %}
+                                    {% ifequal project_id p.1%}
+                                    <option value="{{ p.1 }}" selected>{{ p.0 }}</option>
+                                    {% else %}
+                                    <option value="{{ p.1 }}">{{ p.0 }}</option>
+                                    {% endifequal %}
                                 {% endfor %}
                             </select>
                         </li>
@@ -191,9 +195,10 @@
                     type: "POST",
                     url: "/switch_project/",
                     async: false,
-                    data: {"new_project_id", obj.value},
+                    data: {"new_project_id": obj.value},
                     success: function(data) {
                         window.location.reload();
+                        $(obj).val(obj.value);
                     },
                     error: function() {
                         alert("error");

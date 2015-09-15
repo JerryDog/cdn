@@ -160,7 +160,8 @@ TEMPLATE_DIRS=(
 
 STATIC_URL = '/static/'
 
-KEYSTONE="10.240.56.1:35357"
+COOKIES_TIMEOUT = 1200
+KEYSTONE = "10.240.56.1:35357"
 XML_PATH = 'E:\cdn\cdn_manage\Xml\%s.xml'
 CREATE_XML_PATH = 'E:\cdn\cdn_manage\create-xml.py'
 DINON_KEY = 'test'

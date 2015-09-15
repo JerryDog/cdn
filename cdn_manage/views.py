@@ -45,8 +45,9 @@ def login(req):
         project_list = getTokenFromKS(username, password)
         if project_list and project_list != 'ConnError':
             req.session['project_id'] = project_list[0][1]
+            req.session['project_list'] = project_list
             response = HttpResponseRedirect('/domain_manage/')
-            response.set_cookie('username', username, 600)
+            response.set_cookie('username', username, settings.COOKIES_TIMEOUT)
             return response
         else:
             if project_list == 'ConnError':
@@ -130,6 +131,7 @@ def domainManage(req):
         session_id = '%s' % uuid.uuid1()
         req.session['session_id'] = session_id
         domains = Domain.objects.filter(project_id=project_id)
+        project_list = req.session['project_list']
         username = req.COOKIES.get('username')
         return render_to_response('domain_manage.html', locals())
 
@@ -247,6 +249,8 @@ def handlerCache(req):
     if req.method == 'POST':
         url = req.POST.get('url')
         url_type = req.POST.get('type')
+        username = req.COOKIES.get('username')
+        project_id = req.session['project_id']
         obj = DiLianManager()
         status, reason, resp, req_id = obj.cdnPushAndPrefetch(url_type, url)
         if status == 200:
@@ -256,6 +260,8 @@ def handlerCache(req):
                 task_status = Etree.fromstring(resp).find("message").text
             t = TaskList(task_id=req_id,
                          task_type=url_type,
+                         project_id=project_id,
+                         task_user=username,
                          task_content=url,
                          task_status=task_status)
             t.save()
@@ -289,8 +295,9 @@ def handlerCache(req):
             return HttpResponseRedirect('/login/')
         else:
             project_id = req.session['project_id']
-        tasks = TaskList.objects.all(project_id=project_id)
+        tasks = TaskList.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        project_list = req.session['project_list']
         return render_to_response("refresh_cache.html", locals())
 
 @csrf_exempt
@@ -318,6 +325,7 @@ def bandwidth(req):
             project_id = req.session['project_id']
         domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        project_list = req.session['project_list']
         return render_to_response("bandwidth.html", locals())
 
 @csrf_exempt
@@ -341,6 +349,7 @@ def analyticsServer(req):
             project_id = req.session['project_id']
         domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        project_list = req.session['project_list']
         return render_to_response("analytics_server.html", locals())
 
 @csrf_exempt
@@ -364,4 +373,5 @@ def logDownloadList(req):
             project_id = req.session['project_id']
         domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        project_list = req.session['project_list']
         return render_to_response("log_downLoad_list.html", locals())
