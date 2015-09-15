@@ -11,9 +11,12 @@ import xml.etree.ElementTree as Etree
 import os, sys, json, datetime
 import utils
 import uuid
+import logging
 #reload(sys)
 #sys.setdefaultencoding('utf8')
 # Create your views here.
+
+LOG = logging.getLogger(__name__)
 
 SUCCESS = '$(document).ready(function(){$("#succContent").html("%s");' \
           '$("#alertSucc").fadeIn();setTimeout("closeAlert(\'#alertSucc\')", 2000);});'
@@ -34,6 +37,11 @@ JS_DICT = {
 }
 
 def index(req):
+    if not req.session.has_key("project_id"):
+        return HttpResponseRedirect('/login/')
+    else:
+        project_id = req.session['project_id']
+    project_list = req.session['project_list']
     username = req.COOKIES.get('username')
     return render_to_response('index.html', locals())
 
@@ -44,6 +52,7 @@ def login(req):
         password = req.POST.get('password')
         project_list = getTokenFromKS(username, password)
         if project_list and project_list != 'ConnError':
+            LOG.info('User %s login!' % username)
             req.session['project_id'] = project_list[0][1]
             req.session['project_list'] = project_list
             response = HttpResponseRedirect('/domain_manage/')
@@ -52,7 +61,9 @@ def login(req):
         else:
             if project_list == 'ConnError':
                 error = '链接超时'
+                LOG.error('User %s login timeout!' % username)
             else:
+                LOG.info('User %s login wrong password' % username)
                 error = '用户名密码错误'
             return render_to_response('login.html', locals())
     else:
@@ -60,6 +71,7 @@ def login(req):
 
 def logout(req):
     if req.COOKIES.get('username'):
+        LOG.info('User %s logout!' % req.COOKIES.get('username'))
         response = HttpResponseRedirect('/login/')
         response.delete_cookie('username')
         return response
@@ -104,10 +116,15 @@ def domainManage(req):
             noUse = 'True'
         else:
             noUse = 'False'
-        print '%s %s %s %s \'%s\'  %s %s -J \'%s\'' % (
-            sys.executable, settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str)
-        os.system('%s %s %s %s \'%s\' %s %s -J \'%s\'' % (
-            sys.executable, settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        LOG.info('Create Domain: /usr/bin/python %s %s %s \'%s\'  %s %s -J \'%s\'' % (
+            settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        try:
+            os.system('/usr/bin/python %s %s %s \'%s\' %s %s -J \'%s\'' % (
+                settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        except Exception,e:
+            LOG.error('Create Domain Failed because of os.system')
+            req.session['current_js'] = JS_DICT["fail_create"] % e
+            return HttpResponseRedirect('/domain_manage/')
         create_obj = DiLianManager(domain_name, ip_str, test_url, xml_name)
         status, reason, resp = create_obj.create()
         if status == 201:
@@ -143,13 +160,16 @@ def deleteDomain(req):
     if req.method == 'POST':
         ids = req.POST.get('domain_ids')
         id_list = ids.split(',')
+        username = req.COOKIES.get('username')
         for i in id_list:
             if i:
                 id_obj = Domain.objects.get(id=i)
+                domain_name = id_obj.domain_name
                 delete_obj = DiLianManager()
                 status, reason, resp = delete_obj.delete(id_obj.distribution_id, id_obj.etag)
                 if status == 200:
                     id_obj.delete()
+                    LOG.info('User %s delete domain %s' % (username, domain_name))
                     result = 1
                 else:
                     result = Etree.fromstring(resp).find("Message").text
@@ -207,10 +227,14 @@ def updateDomain(req, domain_id):
         json_str = json.dumps(json_str)
         random = uuid.uuid1()
         xml_name = '%s%s' % (domain_name, random)
-        print '%s %s %s %s \'%s\' %s %s -J \'%s\'' % (
-            sys.executable, settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str)
-        os.system('%s %s %s %s \'%s\' %s %s -J \'%s\'' % (
-            sys.executable, settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        LOG.info('Update Domain: /usr/bin/python %s %s %s \'%s\' %s %s -J \'%s\'' % (
+            settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        try:
+            os.system('/usr/bin/python %s %s %s \'%s\' %s %s -J \'%s\'' % (
+                settings.CREATE_XML_PATH, xml_name, domain_name, ip_str, test_url, noUse, json_str))
+        except Exception,e:
+            req.session['current_js'] = JS_DICT["fail_update"] % e
+            return HttpResponseRedirect('/domain_manage/')
         update_obj = DiLianManager(domain_name, ip_str, test_url, xml_name)
         status, reason, resp, ETag = update_obj.config(disId, etag)
         if status == 200:

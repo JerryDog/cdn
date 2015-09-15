@@ -181,6 +181,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         ETag = response.getheader("ETag")
+        LOG.info("Create Request Url: %s" % rq_url)
         LOG.info("Create status:%s, ETag: %s, reason:%s, resp:%s" % (status, ETag, reason, resp))
         return (status, reason, resp)
 
@@ -192,6 +193,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         ETag = response.getheader("ETag")
+        LOG.info("Update Request Url: %s" % rq_url)
         LOG.info("Update status:%s, ETag: %s, reason:%s, resp:%s" % (status, ETag, reason, resp))
         return (status, reason, resp, ETag)
 
@@ -203,6 +205,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         ETag = response.getheader("ETag")
+        LOG.info("Delete Request Url: %s" % rq_url)
         LOG.info("Delete status:%s, etag: %s, reason:%s, resp:%s" % (status, ETag, reason, resp))
         return (status, reason, resp)
 
@@ -213,6 +216,7 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
+        LOG.info("Download Request Url: %s" % rq_url)
         LOG.info("Download status:%s, reason:%s, resp:%s" % (status, reason, resp))
         return (status, reason, resp)
 
@@ -224,6 +228,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         ETag = response.getheader("ETag")
+        LOG.info("Get Request Url: %s" % rq_url)
         LOG.info("Get status:%s, ETag: %s, reason:%s, resp:%s" % (status, ETag, reason, resp))
         return (status, reason, resp, ETag)
 
@@ -242,6 +247,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         req_id = response.getheader("x-dnion-request-id")
+        LOG.info("UrlPush Request Url: %s" % rq_url)
         LOG.info("UrlPush status:%s, req_id: %s, reason:%s, resp:%s" % (status, req_id, reason, resp))
         return (status, reason, resp, req_id)
 
@@ -252,6 +258,7 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
+        LOG.info("UrlProgerss Request Url: %s" % rq_url)
         LOG.info("UrlProgress status:%s, req_id: %s, reason:%s, resp:%s" % (status, req_id, reason, resp))
         return (status, reason, resp)
 
@@ -262,6 +269,7 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
+        LOG.info("PrefetchProgress Request Url: %s" % rq_url)
         LOG.info("PrefetchProgress status:%s, req_id: %s, reason:%s, resp:%s" % (status, req_id, reason, resp))
         return (status, reason, resp)
 
@@ -272,6 +280,7 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
+        LOG.info("BankwidthMap Request Url: %s" % rq_url)
         LOG.info("BandwidthMap status:%s, reason:%s" % (status, reason))
         return (status, reason, resp)
 
@@ -282,6 +291,7 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
+        LOG.info("AnalyticsServer Request Url: %s" % rq_url)
         LOG.info("AnalyticsServer status:%s, reason:%s, resp:%s" % (status, reason, resp))
         return (status, reason, resp)
 
@@ -292,6 +302,6 @@ class DiLianManager(object):
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status
         reason = response.reason
-        print rq_url
+        LOG.info("LogDownload Request Url: %s" % rq_url)
         LOG.info("LogDownload status:%s, reason:%s, resp:%s" % (status, reason, resp))
         return (status, reason, resp)
