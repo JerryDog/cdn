@@ -1474,3 +1474,13 @@ Traceback (most recent call last):
   File "C:\Python27\lib\socket.py", line 571, in create_connection
     raise err
 error: [Errno 10060] 
+2015-09-15 12:40:23,191 [Thread-1:11104] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 133, in domainManage
+    domains = Domain.objects.filter(project_id=project_id)
+NameError: global name 'project_id' is not defined
+2015-09-15 12:40:23,384 [Thread-5:11864] [django.request:143] [WARNING]- Not Found: /favicon.ico

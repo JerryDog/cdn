@@ -97,6 +97,9 @@ def domainManage(req):
         json_str = json.dumps(json_str)
         random = uuid.uuid1()
         xml_name = '%s%s' % (domain_name, random)
+
+        project_id = req.session['project_id']
+        username = req.COOKIES.get('username')
         if ignore_param_req:
             noUse = 'True'
         else:
@@ -113,7 +116,7 @@ def domainManage(req):
             ETag = create_obj.md5_file(settings.XML_PATH % xml_name)
             domain_cname = disId + settings.DINON_CNAME
             domain_id = utils.saveDomainAndReturnId(domain_name, domain_cname, domain_type,
-                                                    domain_status, disId, ETag,
+                                                    domain_status, disId, ETag, project_id, username,
                                                     ip_str,test_url,ignore_param_req)
             utils.saveCacheRulesAndAcl(domain_id, cache_rules, acl)
             os.remove(settings.XML_PATH % xml_name)

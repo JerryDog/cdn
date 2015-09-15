@@ -10,13 +10,16 @@ def getBool(str):
 
 
 def saveDomainAndReturnId(domain_name,domain_cname,domain_type,
-                          domain_status,disId, etag, new_ip_list,test_url,ignore_param_req):
+                          domain_status,disId, etag, project_id,
+                          username, new_ip_list,test_url,ignore_param_req):
     domain = Domain(domain_name=domain_name,
                     domain_cname=domain_cname,
                     domain_type=domain_type,
                     domain_status=domain_status,
                     distribution_id=disId,
                     etag=etag,
+                    project_id=project_id,
+                    username=username,
                     ip_list=new_ip_list,
                     test_url=test_url,
                     ignore_param_req=ignore_param_req)
