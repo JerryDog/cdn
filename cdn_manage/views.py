@@ -50,7 +50,10 @@ def login(req):
     if req.method == "POST":
         username = req.POST.get('username')
         password = req.POST.get('password')
-        project_list = getTokenFromKS(username, password)
+        if username == settings.SUPERADMIN and password == settings.SUPERADMIN_PD:
+            project_list = [["超级管理员", "1234567890"]]
+        else:
+            project_list = getTokenFromKS(username, password)
         if project_list and project_list != 'ConnError':
             LOG.info('User %s login!' % username)
             req.session['project_id'] = project_list[0][1]
@@ -150,9 +153,12 @@ def domainManage(req):
             del req.session["current_js"]
         session_id = '%s' % uuid.uuid1()
         req.session['session_id'] = session_id
-        domains = Domain.objects.filter(project_id=project_id)
-        project_list = req.session['project_list']
         username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all()
+        else:
+            domains = Domain.objects.filter(project_id=project_id)
+        project_list = req.session['project_list']
         return render_to_response('domain_manage.html', locals())
 
 @csrf_exempt
@@ -300,7 +306,7 @@ def handlerCache(req):
         all_tasks = TaskList.objects.all()
         obj = DiLianManager()
         for t in all_tasks:
-            if t.task_status != 'success':
+            if t.task_status != 'success' or t.task_status != 'failure':
                 if t.task_type == '2':
                     status, reason, resp = obj.prefetchProgress(t.task_id)
                 else:
@@ -309,11 +315,11 @@ def handlerCache(req):
                     new_task_status = Etree.fromstring(resp).find("Status").text
                 except:
                     for i in Etree.fromstring(resp).findall("Item/Status"):
-                        if i.text != 'success':
+                        if i.text == 'failed':
                             new_task_status = 'failure'
                             break
                         else:
-                            new_task_status = 'success'
+                            new_task_status = i.text
                 if new_task_status != t.task_status:
                     #update status
                     task_obj = TaskList.objects.filter(task_id=t.task_id)
@@ -322,8 +328,11 @@ def handlerCache(req):
             return HttpResponseRedirect('/login/')
         else:
             project_id = req.session['project_id']
-        tasks = TaskList.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = TaskList.objects.all()
+        else:
+            tasks = TaskList.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
         return render_to_response("refresh_cache.html", locals())
 
@@ -350,8 +359,11 @@ def bandwidth(req):
             return HttpResponseRedirect('/login/')
         else:
             project_id = req.session['project_id']
-        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all()
+        else:
+            domains = Domain.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
         return render_to_response("bandwidth.html", locals())
 
@@ -365,17 +377,22 @@ def analyticsServer(req):
         obj = DiLianManager()
         status, reason, resp = obj.analyticsServer(domain_name, start, end, req_type)
         if status == 200:
-            result = resp
+            local = utils.getTempAndLocals(resp, req_type)
+            info = [utils.InfoObj(l) for l in local["info"]]
+            return render_to_response(local["template_name"], locals())
         else:
             result = Etree.fromstring(resp).find("Message").text
-        return HttpResponse(result)
+            return HttpResponse(result)
     else:
         if not req.session.has_key("project_id"):
             return HttpResponseRedirect('/login/')
         else:
             project_id = req.session['project_id']
-        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all()
+        else:
+            domains = Domain.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
         return render_to_response("analytics_server.html", locals())
 
@@ -398,7 +415,10 @@ def logDownloadList(req):
             return HttpResponseRedirect('/login/')
         else:
             project_id = req.session['project_id']
-        domains = Domain.objects.filter(project_id=project_id)
         username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all()
+        else:
+            domains = Domain.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
         return render_to_response("log_downLoad_list.html", locals())

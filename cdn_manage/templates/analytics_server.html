@@ -150,8 +150,8 @@ function bandwidth(){
         async: false,
         data: $("#date_form").serialize()+'&req_type='+req_type,
         success: function(data) {
-            if(data.indexOf("xml") > 0){
-                $("#resp_content").text(data);
+            if(data.indexOf("table") > 0){
+                $("#resp_content").html(data);
             }else{
                 $("#content_of_url").html(data);
                 $("#result_of_url").modal('show');

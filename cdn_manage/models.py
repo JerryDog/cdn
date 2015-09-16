@@ -11,6 +11,7 @@ class Domain(models.Model):
     ip_list = models.CharField(max_length=128)
     etag = models.CharField(max_length=64)
     project_id = models.CharField(max_length=64)
+    username = models.CharField(max_length=32)
     test_url = models.URLField()
     ignore_param_req = models.BooleanField()
     create_time = models.DateTimeField(auto_now_add=True)

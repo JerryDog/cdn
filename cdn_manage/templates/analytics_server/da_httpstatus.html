@@ -1,0 +1,20 @@
+                {% for l in info%}
+                        <h3 style="display:inline;">返回码:</h3> <span>{{ l.code }}</span>    <h3 style="display:inline;"> 请求数:</h3> <span>{{ l.count }}</span>
+
+                       <table id="domain_table" style="width:600px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>Url</th>
+								  <th>请求数/访问数</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+                          {% for i in l.item %}
+							<tr>
+								<td class="center">{{ i.url }}</td>
+                                <td class="center">{{ i.count }}</td>
+							</tr>
+                          {% endfor %}
+						  </tbody>
+					  </table>
+                {% endfor %}

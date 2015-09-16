@@ -1484,3 +1484,259 @@ Traceback (most recent call last):
     domains = Domain.objects.filter(project_id=project_id)
 NameError: global name 'project_id' is not defined
 2015-09-15 12:40:23,384 [Thread-5:11864] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-15 18:56:01,503 [Thread-58:5172] [django.request:224] [ERROR]- Internal Server Error: /domain_manage/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 162, in domainManage
+    return render_to_response('domain_manage.html', locals())
+  File "C:\Python27\lib\site-packages\django\shortcuts\__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 164, in render_to_string
+    return t.render(Context(dictionary))
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 140, in render
+    return self._render(context)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\lib\site-packages\django\template\debug.py", line 78, in render_node
+    return node.render(context)
+  File "C:\Python27\lib\site-packages\django\template\loader_tags.py", line 123, in render
+    return compiled_parent._render(context)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\lib\site-packages\django\template\debug.py", line 78, in render_node
+    return node.render(context)
+  File "C:\Python27\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 840, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\lib\site-packages\django\template\debug.py", line 78, in render_node
+    return node.render(context)
+  File "C:\Python27\lib\site-packages\django\template\defaulttags.py", line 156, in render
+    len_values = len(values)
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 77, in __len__
+    self._fetch_all()
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "C:\Python27\lib\site-packages\django\db\models\query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "C:\Python27\lib\site-packages\django\db\models\sql\compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "C:\Python27\lib\site-packages\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "C:\Python27\lib\site-packages\django\db\backends\util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "C:\Python27\lib\site-packages\django\db\backends\mysql\base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Python27\lib\site-packages\MySQLdb\cursors.py", line 174, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'cdn_manage_domain.project_id' in 'field list'")
+2015-09-15 18:56:02,052 [Thread-59:8476] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-09-16 12:21:31,339 [Thread-176:11564] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    return render_to_response(local["template_name"], local)
+  File "C:\Python27\lib\site-packages\django\shortcuts\__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 162, in render_to_string
+    t = get_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 138, in get_template
+    template, origin = find_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 127, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 149, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 153, in compile_string
+    return parser.parse()
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 278, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Python27\lib\site-packages\django\template\defaulttags.py", line 806, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 254, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 360, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 577, in __init__
+    "from '%s'" % (token[upto:], token))
+TemplateSyntaxError: Could not parse the remainder: '["count"]' from 'l["count"]'
+2015-09-16 12:26:53,773 [Thread-58:9928] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 382, in analyticsServer
+    print i["count"]
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 266, in __getitem__
+    return self._children[index]
+TypeError: list indices must be integers, not str
+2015-09-16 14:32:45,931 [Thread-181:12012] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 382, in analyticsServer
+    return render_to_response(local["template_name"], locals())
+  File "C:\Python27\lib\site-packages\django\shortcuts\__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 162, in render_to_string
+    t = get_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 138, in get_template
+    template, origin = find_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 131, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: analytics_server/da_ip.html
+2015-09-16 14:51:30,094 [Thread-61:7308] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:51:34,753 [Thread-62:10572] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:53:23,130 [Thread-64:10140] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:53:55,230 [Thread-124:5756] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:56:26,359 [Thread-59:11928] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:56:45,135 [Thread-59:1352] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 14:57:36,921 [Thread-59:5884] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 15:00:52,832 [Thread-60:4856] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 381, in analyticsServer
+    info = [utils.InfoObj(l) for l in local["info"]]
+  File "E:\cdn\cdn_manage\utils.py", line 133, in __init__
+    self.bandwidth = obj.find('area').get('bandwidth')
+AttributeError: 'NoneType' object has no attribute 'get'
+2015-09-16 15:19:36,947 [Thread-59:11008] [django.request:224] [ERROR]- Internal Server Error: /analytics_server/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 382, in analyticsServer
+    return render_to_response(local["template_name"], locals())
+  File "C:\Python27\lib\site-packages\django\shortcuts\__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 162, in render_to_string
+    t = get_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 138, in get_template
+    template, origin = find_template(template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 127, in find_template
+    source, display_name = loader(name, dirs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "C:\Python27\lib\site-packages\django\template\loader.py", line 149, in get_template_from_string
+    return Template(source, origin, name)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 153, in compile_string
+    return parser.parse()
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 278, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Python27\lib\site-packages\django\template\defaulttags.py", line 806, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 278, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Python27\lib\site-packages\django\template\defaulttags.py", line 806, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 254, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 360, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Python27\lib\site-packages\django\template\base.py", line 577, in __init__
+    "from '%s'" % (token[upto:], token))
+TemplateSyntaxError: Could not parse the remainder: '(i)' from 'dir(i)'

@@ -1,0 +1,16 @@
+<table id="domain_table" style="width:600px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>客户浏览器</th>
+								  <th>请求数/访问数</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+                          {% for l in info%}
+							<tr>
+								<td class="center">{{ l.browser }}</td>
+                                <td class="center">{{ l.count }}</td>
+							</tr>
+                          {% endfor %}
+						  </tbody>
+					  </table>

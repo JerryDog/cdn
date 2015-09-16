@@ -1,6 +1,7 @@
 __author__ = 'liujiahua'
 from models import Domain, CacheRules, AccessControl
 import os
+import xml.etree.ElementTree as Etree
 
 def getBool(str):
     if str == "1":
@@ -100,6 +101,51 @@ def getJson4Xml(cache_rules=None, acl=None):
     else:
         json_str.pop("AclBehavior")
     return  json_str
+
+def getTempAndLocals(resp, req_type):
+    if req_type == 'DA_URL':
+        template_name = 'analytics_server/da_url.html'
+        info = Etree.fromstring(resp).findall('detail/info')
+    if req_type == 'DA_IP':
+        template_name = 'analytics_server/da_ip.html'
+        info = Etree.fromstring(resp).findall('detail/info')
+    if req_type == 'DA_REFER':
+        template_name = 'analytics_server/da_refer.html'
+        info = Etree.fromstring(resp).findall('detail/info')
+    if req_type == 'DA_BROWSER':
+        template_name = 'analytics_server/da_browser.html'
+        info = Etree.fromstring(resp).findall('detail/info')
+    if req_type == 'DA_FLUX':
+        template_name = 'analytics_server/da_flux.html'
+        info = Etree.fromstring(resp).findall('detail/timestamp')
+    if req_type == 'DA_HTTPSTATUS':
+        template_name = 'analytics_server/da_httpstatus.html'
+        info = Etree.fromstring(resp).findall('detail/info')
+    return locals()
+
+class InfoObj(object):
+    def __init__(self, obj):
+        self.obj = obj
+        self.count = obj.get('count')
+        self.flow = obj.get('flow')
+        self.url = obj.get('url')
+        self.date = obj.get('date')
+        self.refer = obj.get('refer')
+        self.browser = obj.get('browser')
+        self.timestamp = obj.get('value')
+        self.code = obj.get('code')
+
+    @property
+    def bandwidth(self):
+        return self.obj.find('area').get('bandwidth')
+
+    @property
+    def pro(self):
+        return self.obj.find('area').get('pro')
+
+    @property
+    def item(self):
+        return [InfoObj(i) for i in self.obj.findall('urldetail/item')]
 
 class LogObj(object):
     def __init__(self, url):
