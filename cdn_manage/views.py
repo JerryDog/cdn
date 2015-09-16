@@ -8,7 +8,7 @@ from models import Domain, CacheRules, AccessControl, TaskList
 from django.conf import settings
 from ks_auth import getTokenFromKS
 import xml.etree.ElementTree as Etree
-import os, sys, json, datetime
+import os, sys, json, datetime, re
 import utils
 import uuid
 import logging
@@ -284,6 +284,21 @@ def handlerCache(req):
         url_type = req.POST.get('type')
         username = req.COOKIES.get('username')
         project_id = req.session['project_id']
+        ############ 判断是否是当前项目下的域名###########
+        pattern = re.compile('http:\/\/(.*?)\/')
+        re_result = pattern.findall(url)
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all().values_list('domain_name')
+        else:
+            domains = Domain.objects.filter(project_id=project_id).values_list('domain_name')
+        this_domains = []
+        for d in domains:
+            this_domains.append(d[0])
+        for r in re_result:
+            if r not in this_domains:
+                result = '请不要操作该项目以外的域名'
+                return HttpResponse(result)
+        #################################################
         obj = DiLianManager()
         status, reason, resp, req_id = obj.cdnPushAndPrefetch(url_type, url)
         if status == 200:
@@ -330,7 +345,7 @@ def handlerCache(req):
             project_id = req.session['project_id']
         username = req.COOKIES.get('username')
         if username == settings.SUPERADMIN:
-            domains = TaskList.objects.all()
+            tasks = TaskList.objects.all()
         else:
             tasks = TaskList.objects.filter(project_id=project_id)
         project_list = req.session['project_list']

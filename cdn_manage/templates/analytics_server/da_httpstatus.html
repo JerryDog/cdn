@@ -1,7 +1,22 @@
-                {% for l in info%}
-                        <h3 style="display:inline;">返回码:</h3> <span>{{ l.code }}</span>    <h3 style="display:inline;"> 请求数:</h3> <span>{{ l.count }}</span>
+                <h3 style="display:inline;">返回码:</h3> <select onchange="switchHttpStatus(this)">
+                                {% for l in info %}
+                                    {% ifequal forloop.counter 1%}
+                                    <option selected>{{ l.code }}</option>
+                                    {% else %}
+                                    <option>{{ l.code }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                </select>
 
-                       <table id="domain_table" style="width:600px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+                {% for l in info%}
+                        {% ifequal forloop.counter 1%}
+                             <div id="http_table_{{ l.code }}" class="http_code_div">
+                        {% else %}
+                            <div id="http_table_{{ l.code }}" class="http_code_div" style="display:none;">
+                        {% endifequal %}
+                        <h3 style="display:inline;"> 请求数:</h3> <span>{{ l.count }}</span>
+
+                        <table style="width:600px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
 								  <th>Url</th>
@@ -17,4 +32,5 @@
                           {% endfor %}
 						  </tbody>
 					  </table>
+                      </div>
                 {% endfor %}

@@ -163,5 +163,11 @@ function bandwidth(){
       });
 }
 
+function switchHttpStatus(obj){
+    var http_code = obj.value;
+    $(".http_code_div").attr("style", "display:none;");
+    $("#http_table_" + http_code).attr("style", "");
+}
+
 </script>
 {% endblock %}
