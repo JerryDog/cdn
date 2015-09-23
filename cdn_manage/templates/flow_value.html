@@ -1,0 +1,224 @@
+{% extends "base.html" %} 
+{% block title %}<title>流量监控</title>{% endblock %}
+
+{% block content %} 
+
+			<!-- start: Content -->
+<div id="content" class="span10">
+			
+			
+	<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="/">Home</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="/flow_value/">FlowValue</a></li>
+	</ul>
+
+
+	<div class="row-fluid">
+		<div class="span12">
+            <h1> 流量统计</h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+
+        <form  id="date_form" class="form-horizontal">
+            <h3>域名选择: </h3>
+                <label><input type="radio" name="domain_name"
+                value="{{ all_domains }}"> 全部
+                </label>
+                {% for d in domains %}
+                <label><input type="radio" name="domain_name"
+                value="{{ d.domain_name }}"> {{ d.domain_name }}
+                </label>
+                {% endfor %}
+
+            <h3>选择的一段时间来查询其用量: </h3>
+            <span>从: <input style="width:80px;"  class="datepicker"  type="text" name="start"  id="id_start" /> </span>
+
+            <span>到: <input style="width:80px;" class="datepicker"  type="text" name="end" id="id_end" /> </span>
+                <button id="prefetch_submit_button" onclick="bandwidth()"
+                                         type="button"    class="btn btn-primary">提交
+                                    </button>
+                <small>日期采是YYYY-mm-dd格式。</small>
+        </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+           <div id="resp_content"></div>
+        </div>
+    </div>
+    <div class="row-fluid">
+		<div class="span12">
+           <div id="chart" style="min-width:400px;height:400px"></div>
+        </div>
+    </div>
+
+</div>
+
+
+    <div class="modal hide fade" id="result_of_url">
+		<div class="modal-header">
+			<h3>系统提示</h3>
+		</div>
+		<div class="modal-body">
+			<p id="content_of_url"></p>
+		</div>
+		<div class="modal-footer">
+			<a href="javascript:window.location.reload()" class="btn btn-primary">确认</a>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block js %}
+<script src="/static/js/highcharts.js"></script>
+<script>
+Date.prototype.format =function(format)
+    {
+        var o = {
+        "M+" : this.getMonth()+1, //month
+"d+" : this.getDate(),    //day
+"h+" : this.getHours(),   //hour
+"m+" : this.getMinutes(), //minute
+"s+" : this.getSeconds(), //second
+"q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+"S" : this.getMilliseconds() //millisecond
+        }
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+        (this.getFullYear()+"").substr(4- RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+        format = format.replace(RegExp.$1,
+        RegExp.$1.length==1? o[k] :
+        ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
+    }
+
+$(function(){
+    start = new Date().format('yyyy-MM-01');
+    end = new Date().format('yyyy-MM-dd');
+    $("#id_start").val(start)
+    $("#id_end").val(end)
+});
+
+function checkRedio(){
+    var result=false;
+    var radios = document.getElementsByName("domain_name");
+    for(var i=0;i<radios .length;i++){
+        if (radios[i].checked){
+            result=true;
+        }
+    };
+    if(!result){
+        $("#content_of_url").html("请至少选择一个域名");
+        $("#result_of_url").modal('show');
+    }
+    return result;
+}
+
+
+function bandwidth(){
+     if(!checkRedio()) return false;
+     return $.ajax({
+        type: "POST",
+        url: "/flow_value/",
+        async: false,
+        data: $("#date_form").serialize(),
+        success: function(data) {
+            if(data.indexOf(";") > 0){
+               draw(data);
+            }else{
+                $("#content_of_url").html(data);
+                $("#result_of_url").modal('show');
+            }
+        },
+        error: function() {
+            alert("error");
+        },
+      });
+}
+
+
+function draw(data) {
+                 var arrayData = data.split(";");
+                 var date_list = arrayData[0].split(",");
+                 var flow_list = arrayData[1].split(",");
+                 flow_list_float = new Array();
+                 for (var i=0;i<flow_list.length;i++){
+                    flow_list_float.push(parseFloat(flow_list[i]));
+                }
+                 $('#chart').highcharts({
+                     credits: {
+                         enabled: false
+                     },
+                     chart: {
+                         type: 'area'
+                     },
+                     title: {
+                         text:  '从 '+ $("#id_start").val() + ' 到 ' + $("#id_end").val()
+                     },
+                     subtitle: {
+                         text: document.ontouchstart === undefined ?
+                                 '流量' :
+                                 ''
+                     },
+                     xAxis: {
+                         title: {
+                            text: '日期'
+                         },
+                         categories: date_list,
+                        tickmarkPlacement: 'on',
+
+                     },
+                     yAxis: {
+                         title: {
+                             text:'单位'
+                         },
+                         min: 0,
+                         plotLines: [{
+                             value: 0,
+                             width: 1,
+                             color: '#808080'
+                                    }]
+                     },
+                      tooltip: {
+                        valueSuffix: 'MB',
+                        pointFormat: '<b>{point.y}</b>'
+                      },
+                     legend: {
+                         enabled: true,
+                         layout: 'vertical',
+                         floating: true,
+                         align: 'left',
+                         verticalAlign: 'top',
+                         x: 0,
+                         y: 0,
+                     },
+
+        plotOptions: {
+            area: {
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+                     series: [{
+                         name: $('input[name="domain_name"]:checked ').val(),
+                         color: '#00DB00',
+                         data: flow_list_float,
+                     }]
+                 });
+         };
+
+</script>
+{% endblock %}

@@ -12,6 +12,7 @@ import os, sys, json, datetime, re
 import utils
 import uuid
 import logging
+from cname import CName
 #reload(sys)
 #sys.setdefaultencoding('utf8')
 # Create your views here.
@@ -130,15 +131,17 @@ def domainManage(req):
             return HttpResponseRedirect('/domain_manage/')
         create_obj = DiLianManager(domain_name, ip_str, test_url, xml_name)
         status, reason, resp = create_obj.create()
+        cname_obj = CName()
         if status == 201:
             req.session['current_js'] = JS_DICT["succ_create"]
             disId = Etree.fromstring(resp).find("Id").text
             ETag = create_obj.md5_file(settings.XML_PATH % xml_name)
-            domain_cname = disId + settings.DINON_CNAME
+            domain_cname = domain_name + settings.DINON_CNAME
             domain_id = utils.saveDomainAndReturnId(domain_name, domain_cname, domain_type,
                                                     domain_status, disId, ETag, project_id, username,
                                                     ip_str,test_url,ignore_param_req)
             utils.saveCacheRulesAndAcl(domain_id, cache_rules, acl)
+            cname_obj.insert_cname(domain_name, disId)
             os.remove(settings.XML_PATH % xml_name)
         else:
             req.session['current_js'] = JS_DICT["fail_create"] % Etree.fromstring(resp).find("Message").text
@@ -172,9 +175,11 @@ def deleteDomain(req):
                 id_obj = Domain.objects.get(id=i)
                 domain_name = id_obj.domain_name
                 delete_obj = DiLianManager()
+                cname_obj = CName()
                 status, reason, resp = delete_obj.delete(id_obj.distribution_id, id_obj.etag)
                 if status == 200:
                     id_obj.delete()
+                    cname_obj.del_cname(domain_name)
                     LOG.info('User %s delete domain %s' % (username, domain_name))
                     result = 1
                 else:
@@ -318,27 +323,6 @@ def handlerCache(req):
             result = Etree.fromstring(resp).find("Message").text
         return HttpResponse(result)
     else:
-        all_tasks = TaskList.objects.all()
-        obj = DiLianManager()
-        for t in all_tasks:
-            if t.task_status != 'success' or t.task_status != 'failure':
-                if t.task_type == '2':
-                    status, reason, resp = obj.prefetchProgress(t.task_id)
-                else:
-                    status, reason, resp = obj.pushProgress(t.task_id)
-                try:
-                    new_task_status = Etree.fromstring(resp).find("Status").text
-                except:
-                    for i in Etree.fromstring(resp).findall("Item/Status"):
-                        if i.text == 'failed':
-                            new_task_status = 'failure'
-                            break
-                        else:
-                            new_task_status = i.text
-                if new_task_status != t.task_status:
-                    #update status
-                    task_obj = TaskList.objects.filter(task_id=t.task_id)
-                    task_obj.update(task_status=new_task_status)
         if not req.session.has_key("project_id"):
             return HttpResponseRedirect('/login/')
         else:
@@ -349,6 +333,7 @@ def handlerCache(req):
         else:
             tasks = TaskList.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
+        os.system('./cron_get_cache_status.py &')
         return render_to_response("refresh_cache.html", locals())
 
 @csrf_exempt
@@ -437,3 +422,39 @@ def logDownloadList(req):
             domains = Domain.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
         return render_to_response("log_downLoad_list.html", locals())
+
+@csrf_exempt
+def flowValue(req):
+    if req.method == 'POST':
+        domain_name = req.POST.get('domain_name')
+        start = req.POST.get('start')
+        end = req.POST.get('end')
+        obj = DiLianManager()
+        status, reason, resp = obj.flowValue(domain_name, start, end)
+        if status == 200:
+            flows = [utils.FlowObj(l) for l in Etree.fromstring(resp).findall('date/Product/flow')]
+            date = []
+            flow = []
+            for f in flows:
+                date.append(f.date)
+                flow.append(f.flow)
+            str = ','.join(date) + ';' + ','.join(flow)
+            result = str
+        else:
+            result = status
+        return HttpResponse(result)
+    else:
+        if not req.session.has_key("project_id"):
+            return HttpResponseRedirect('/login/')
+        else:
+            project_id = req.session['project_id']
+        username = req.COOKIES.get('username')
+        if username == settings.SUPERADMIN:
+            domains = Domain.objects.all()
+        else:
+            domains = Domain.objects.filter(project_id=project_id)
+        all_domains = ''
+        for d in domains:
+            all_domains = all_domains + ',' +d.domain_name
+        project_list = req.session['project_list']
+        return render_to_response("flow_value.html", locals())

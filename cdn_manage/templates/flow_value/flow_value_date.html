@@ -1,0 +1,16 @@
+<table id="domain_table" style="width:600px;" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>时间</th>
+								  <th>流量（MB）</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+                          {% for f in flows%}
+							<tr>
+								<td class="center">{{ f.date }}</td>
+                                <td class="center">{{ f.flow }}</td>
+							</tr>
+                          {% endfor %}
+						  </tbody>
+					  </table>

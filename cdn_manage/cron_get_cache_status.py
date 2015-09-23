@@ -86,8 +86,9 @@ def get_cache_status():
                 #update status
                 cur.execute('update cdn.cdn_manage_tasklist set task_status="%s" where task_id="%s"'
                             % (new_task_status, i["task_id"]))
-        cur.close()
-        conn.close()
+    conn.commit()
+    cur.close()
+    conn.close()
 
 if __name__ == '__main__':
     get_cache_status()

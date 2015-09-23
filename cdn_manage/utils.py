@@ -151,3 +151,8 @@ class LogObj(object):
     def __init__(self, url):
         self.url = url
         self.name = os.path.basename(url)
+
+class FlowObj(object):
+    def __init__(self, obj):
+        self.date = obj.get('date')
+        self.flow = obj.text

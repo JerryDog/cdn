@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^bandwidth/$', views.bandwidth, name='bandwidth'),
     url(r'^analytics_server/$', views.analyticsServer, name='analytics_server'),
     url(r'^log_download_list/$', views.logDownloadList, name='log_download_list'),
+    url(r'^flow_value/$', views.flowValue, name='flow_value'),
 )

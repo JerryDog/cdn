@@ -305,3 +305,14 @@ class DiLianManager(object):
         LOG.info("LogDownload Request Url: %s" % rq_url)
         LOG.info("LogDownload status:%s, reason:%s, resp:%s" % (status, reason, resp))
         return (status, reason, resp)
+
+    def flowValue(self, domain_name, start, end, prov='', isp=''):
+        type = REQ_DICT['flowValue']['type']
+        rq_url = REQ_DICT['flowValue']['rq_url'] % (domain_name, start, end, prov, isp)
+        rq_body = ''
+        response, resp = self.req(type, rq_url, rq_body)
+        status = response.status
+        reason = response.reason
+        LOG.info("flowValue Request Url: %s" % rq_url)
+        LOG.info("flowValue status:%s, reason:%s, resp:%s" % (status, reason, resp))
+        return (status, reason, resp)
