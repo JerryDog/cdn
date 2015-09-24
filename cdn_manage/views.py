@@ -334,7 +334,7 @@ def handlerCache(req):
         else:
             tasks = TaskList.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
-        os.system('./cron_get_cache_status.py &')
+        os.system('./cron_get_cache_status.py \&')
         return render_to_response("refresh_cache.html", locals())
 
 @csrf_exempt

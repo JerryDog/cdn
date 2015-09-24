@@ -383,6 +383,7 @@ function template_functions(){
 	$('.datatable').dataTable({
 			"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
 			"sPaginationType": "bootstrap",
+			"aaSorting": [[ 3, "desc" ]],// 按第四列倒序，for 缓存刷新
 			"oLanguage": {
 			"sLengthMenu": "_MENU_ records per page"
 			}

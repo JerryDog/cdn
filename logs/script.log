@@ -1767,3 +1767,5 @@ Traceback (most recent call last):
   File "C:\Python27\lib\site-packages\django\template\loader.py", line 131, in find_template
     raise TemplateDoesNotExist(name)
 TemplateDoesNotExist: flow_value_date.html
+2015-09-23 18:23:40,775 [Thread-2688:16320] [django.request:143] [WARNING]- Not Found: /domain_manage/css/ie.css
+2015-09-23 18:24:25,719 [Thread-2695:20676] [django.request:143] [WARNING]- Not Found: /favicon.ico

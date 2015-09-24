@@ -1,4 +1,4 @@
-#/usr/bin/python
+#!/usr/bin/python
 __author__ = 'liujiahua'
 import MySQLdb
 import xml.etree.ElementTree as Etree
