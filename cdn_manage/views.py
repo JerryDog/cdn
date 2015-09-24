@@ -172,13 +172,14 @@ def deleteDomain(req):
         username = req.COOKIES.get('username')
         for i in id_list:
             if i:
-                id_obj = Domain.objects.get(id=i)
+                id_obj = Domain.objects.filter(id=i)
                 domain_name = id_obj.domain_name
                 delete_obj = DiLianManager()
                 cname_obj = CName()
                 status, reason, resp = delete_obj.delete(id_obj.distribution_id, id_obj.etag)
                 if status == 200:
-                    id_obj.delete()
+                    update_time = datetime.datetime.now()
+                    id_obj.update(domain_status='Deleted', update_time=update_time)
                     cname_obj.del_cname(domain_name)
                     LOG.info('User %s delete domain %s' % (username, domain_name))
                     result = 1
@@ -253,10 +254,10 @@ def updateDomain(req, domain_id):
             update_time = datetime.datetime.now()
             domain = Domain.objects.filter(id=domain_id)
             domain.update(domain_status=domain_status,
-                        ip_list=ip_str,
-                        ignore_param_req=ignore_param_req,
-                        etag=ETag,
-                        update_time=update_time)
+                          ip_list=ip_str,
+                          ignore_param_req=ignore_param_req,
+                          etag=ETag,
+                          update_time=update_time)
             #delete acl and cache rules of this domain
             CacheRules.objects.filter(domain_id=domain_id).delete()
             AccessControl.objects.filter(domain_id=domain_id).delete()

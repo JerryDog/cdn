@@ -55,23 +55,29 @@
 						<table id="domain_table" class="table table-hover table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-                                  <th>
+                                  <th style="width:60px;">
                                       <label class="checkbox">
+                                          <div class="checker">
                                                 <input type="checkbox" name="selectAll"  onClick="selectAll(this)">
+                                          </div>
                                       </label>
                                   </th>
 								  <th>加速域名</th>
 								  <th>源站</th>
                                   <th>别名</th>
-                                  <th>添加日期</th>
+                                  <th style="width:180px;">添加日期</th>
                                   <th>创建者</th>
-								  <th>状态</th>
+								  <th style="width:60px;">状态</th>
 								  <th>操作</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
                           {% for d in domains%}
-							<tr>
+                            {% ifequal d.domain_status 'Deleted' %}
+                               <tr class="hid">
+                            {% else %}
+							   <tr>
+                            {% endifequal %}
                                 <td>
                                     <label class="checkbox">
                                         <div class="checker">
@@ -102,6 +108,9 @@
                                     {% ifequal d.domain_status 'Faild' %}
                                          <span class="label label-important">{{ d.domain_status }}</span>
                                     {% endifequal %}
+                                    {% ifequal d.domain_status 'Deleted' %}
+                                         <span class="label label-important">{{ d.domain_status }}</span>
+                                    {% endifequal %}
 								</td>
 								<td class="center">
 
@@ -113,6 +122,7 @@
                                            class="btn btn-info btn-lg">
                                         刷新
                                         </button>
+                                    <!--
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success dropdown-toggle"
                                             data-toggle="dropdown">
@@ -126,14 +136,15 @@
                                             <li><a href="#">分离的链接</a></li>
                                         </ul>
                                     </div>
+                                    -->
 								</td>
 							</tr>
                           {% endfor %}
 						  </tbody>
-					  </table>            
+					  </table>
 					</div>
 				</div><!--/span-->
-			
+			    <button type="button" onclick="showAllDomains()" class="btn btn-default" style="outline:none;">显示全部</button>
 			</div><!--/row-->
 
 
@@ -628,6 +639,20 @@ function smallChange(obj) {
 </script>
 
 <script type="text/javascript">
+
+    var trs = $("tr[class='hid']");
+    for(i = 0; i < trs.length; i++){
+        trs[i].style.display = "none"; //这里获取的trs[i]是DOM对象而不是jQuery对象，因此不能直接使用hide()方法
+    }
+
+    function showAllDomains(){
+
+        for(i = 0; i < trs.length; i++){
+            trs[i].style.display = "";
+        }
+
+    }
+
     var tabCache = document.getElementById("tabCache");
 
     // 设置表格可编辑
