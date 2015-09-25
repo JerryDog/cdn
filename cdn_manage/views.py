@@ -173,10 +173,10 @@ def deleteDomain(req):
         for i in id_list:
             if i:
                 id_obj = Domain.objects.filter(id=i)
-                domain_name = id_obj.domain_name
+                domain_name = id_obj[0].domain_name
                 delete_obj = DiLianManager()
                 cname_obj = CName()
-                status, reason, resp = delete_obj.delete(id_obj.distribution_id, id_obj.etag)
+                status, reason, resp = delete_obj.delete(id_obj[0].distribution_id, id_obj[0].etag)
                 if status == 200:
                     update_time = datetime.datetime.now()
                     id_obj.update(domain_status='Deleted', update_time=update_time)
