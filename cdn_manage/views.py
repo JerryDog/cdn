@@ -7,14 +7,15 @@ from django.views.decorators.csrf import csrf_exempt
 from models import Domain, CacheRules, AccessControl, TaskList
 from django.conf import settings
 from ks_auth import getTokenFromKS
+from tasks import getTaskStatus
 import xml.etree.ElementTree as Etree
 import os, sys, json, datetime, re
 import utils
 import uuid
 import logging
 from cname import CName
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 # Create your views here.
 
 LOG = logging.getLogger(__name__)
@@ -334,7 +335,7 @@ def handlerCache(req):
         else:
             tasks = TaskList.objects.filter(project_id=project_id)
         project_list = req.session['project_list']
-        os.system('./cron_get_cache_status.py \&')
+        getTaskStatus.delay()
         return render_to_response("refresh_cache.html", locals())
 
 @csrf_exempt

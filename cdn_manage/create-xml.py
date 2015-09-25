@@ -285,7 +285,7 @@ try:
 except:
     pass
 i = doc.toprettyxml().split('\n')
-file_path = 'E:\cdn\cdn_manage\xml\%s.xml' % xml_name
+file_path = '/usr/local/cdn/cdn_manage/Xml/%s.xml' % xml_name
 if os.path.exists(file_path):
     os.remove(file_path)
 with open(file_path,'a+') as f:
