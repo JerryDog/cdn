@@ -347,12 +347,16 @@ def bandwidth(req):
         obj = DiLianManager()
         status, reason, resp = obj.bandwidthMap(domain_name, start, end)
         if status == 200:
-            random = uuid.uuid1()
-            path = settings.MONITOR_IMG % random
-            os.system('rm -f %s/*' % os.path.dirname(path))
-            with open(path, 'wb') as f:
-                f.write(resp)
-            result = os.path.basename(path)
+            #random = uuid.uuid1()
+            #path = settings.MONITOR_IMG % random
+            #os.system('rm -f %s/*' % os.path.dirname(path))
+            #with open(path, 'wb') as f:
+            #    f.write(resp)
+            data = []
+            for i in Etree.fromstring(resp).findall("date/Product/Traffice"):
+                data.append(i.text)
+            result = ','.join(data)
+            print result
         else:
             result = Etree.fromstring(resp).find("Message").text
         return HttpResponse(result)

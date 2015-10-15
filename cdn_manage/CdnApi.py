@@ -16,7 +16,7 @@ REQ_DICT = {
         "postfile":"n",
     },
     "bandwidthvalue":{
-        "rq_url":"/DnionCloud/Bandwidth/bandwidthValue?domain=%s&date=%s",#domain&date
+        "rq_url":"/DnionCloud/Bandwidth/bandwidthValue?domain=%s&date=%s&endDate=%s",#domain&date
         "type":"POST",
         "postfile":"n",
     },
@@ -274,8 +274,8 @@ class DiLianManager(object):
         return (status, reason, resp)
 
     def bandwidthMap(self, domain_name, start, end):
-        type = REQ_DICT['bandwidthmap']['type']
-        rq_url = REQ_DICT['bandwidthmap']['rq_url'] % (domain_name, start, end)
+        type = REQ_DICT['bandwidthvalue']['type']
+        rq_url = REQ_DICT['bandwidthvalue']['rq_url'] % (domain_name, start, end)
         rq_body = ''
         response, resp = self.req(type, rq_url, rq_body)
         status = response.status

@@ -72,7 +72,7 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-                          {% for d in domains%}
+                          {% for d in domains %}
                             {% ifequal d.domain_status 'Deleted' %}
                                <tr class="hid">
                             {% else %}
@@ -113,7 +113,8 @@
                                     {% endifequal %}
 								</td>
 								<td class="center">
-
+                                    {% ifequal d.domain_status 'Deleted' %}
+                                    {% else %}
                                         <a href="javascript:editDomainAjax('{{ d.id }}')"
                                            class="btn btn-primary btn-lg" role="button">
                                         编辑
@@ -122,6 +123,7 @@
                                            class="btn btn-info btn-lg">
                                         刷新
                                         </button>
+                                    {% endifequal %}
                                     <!--
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success dropdown-toggle"
