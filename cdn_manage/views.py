@@ -356,7 +356,6 @@ def bandwidth(req):
             for i in Etree.fromstring(resp).findall("date/Product/Traffice"):
                 data.append(i.text)
             result = ','.join(data)
-            print result
         else:
             result = Etree.fromstring(resp).find("Message").text
         return HttpResponse(result)
