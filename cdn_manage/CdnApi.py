@@ -281,7 +281,7 @@ class DiLianManager(object):
         status = response.status
         reason = response.reason
         LOG.info("BankwidthMap Request Url: %s" % rq_url)
-        LOG.info("BandwidthMap status:%s, reason:%s" % (status, reason))
+        LOG.info("BandwidthMap status:%s, reason:%s， resp:%s" % (status, reason, resp))
         return (status, reason, resp)
 
     def analyticsServer(self, domain_name, start, end, req_type):

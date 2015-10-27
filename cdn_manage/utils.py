@@ -156,3 +156,8 @@ class FlowObj(object):
     def __init__(self, obj):
         self.date = obj.get('date')
         self.flow = obj.text
+
+class bandwidthObj(object):
+    def __init__(self, obj):
+        self.time = obj.get('time')
+        self.bandwidth = obj.text

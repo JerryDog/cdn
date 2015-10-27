@@ -463,3 +463,24 @@ def flowValue(req):
             all_domains = all_domains + ',' +d.domain_name
         project_list = req.session['project_list']
         return render_to_response("flow_value.html", locals())
+
+def bandwidth_csv(req):
+    if req.method == 'GET':
+        import csv
+        domain_name = req.GET.get('domain_name')
+        start = req.GET.get('start')
+        end = req.GET.get('end')
+        obj = DiLianManager()
+        status, reason, resp = obj.bandwidthMap(domain_name, start, end)
+        if status == 200:
+            flows = [utils.bandwidthObj(l) for l in Etree.fromstring(resp).findall('date/Product/Traffice')]
+            response = HttpResponse(mimetype="text/csv")
+            response['Content-Disposition'] = 'attachment; filename=%s_%s_bandwidth.csv' % (start, end)
+            writer = csv.writer(response)
+            writer.writerow(["Time", "BandWidth"])
+            for f in flows:
+                writer.writerow([f.time, f.bandwidth])
+            return response
+        else:
+            result = Etree.fromstring(resp).find("Message").text
+            return HttpResponse(result)

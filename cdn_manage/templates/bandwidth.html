@@ -44,6 +44,13 @@
         </form>
         </div>
     </div>
+
+    <div class="row-fluid">
+		<div class="span12">
+           <div style="float:right "><a id="download_csv" type="button" class="btn btn-primary" href="" disabled="disabled">下载 CSV</a></div>
+        </div>
+    </div>
+
     <div class="row-fluid">
 		<div class="span12">
             <div id="chart" style="min-width:400px;height:400px"></div>
@@ -130,6 +137,8 @@ function bandwidth(){
                 var date_start=$("#id_start").val();
                 var date_start_format=date_start.split('-');
                 draw(data_in_float,date_start_format);
+                $("#download_csv").removeAttr("disabled");
+                $("#download_csv").attr("href","/bandwidth_csv/?domain_name="+$("input[name='domain_name']:checked").val()+"&start=" + $("#id_start").val() + "&end=" + $("#id_end").val());
             }else{
                 $("#content_of_url").html(data);
                 $("#result_of_url").modal('show');
