@@ -25,7 +25,7 @@ def saveDomainAndReturnId(domain_name,domain_cname,domain_type,
                     test_url=test_url,
                     ignore_param_req=ignore_param_req)
     domain.save()
-    domain_id = Domain.objects.get(domain_name=domain_name).id
+    domain_id = Domain.objects.latest('id').id
     return domain_id
 
 def saveCacheRulesAndAcl(domain_id, cache_rules=None, acl=None):

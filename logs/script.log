@@ -1769,3 +1769,46 @@ Traceback (most recent call last):
 TemplateDoesNotExist: flow_value_date.html
 2015-09-23 18:23:40,775 [Thread-2688:16320] [django.request:143] [WARNING]- Not Found: /domain_manage/css/ie.css
 2015-09-23 18:24:25,719 [Thread-2695:20676] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-10-27 11:36:02,013 [Thread-61:4004] [django.request:224] [ERROR]- Internal Server Error: /bandwidth_csv/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 478, in bandwidth_csv
+    response['Content-Disposition'] = 'attachment; filename=从%s到%s.csv' % (start, end)
+  File "C:\Python27\lib\site-packages\django\http\response.py", line 179, in __setitem__
+    value = self._convert_to_charset(value, 'latin-1', mime_encode=True)
+  File "C:\Python27\lib\site-packages\django\http\response.py", line 174, in _convert_to_charset
+    raise BadHeaderError("Header values can't contain newlines (got %r)" % value)
+BadHeaderError: Header values can't contain newlines (got '=?utf-8?q?attachment=3B_filename=3D=E4=BB=8E2015-10-01=E5=88=B02015-10-07?=\n =?utf-8?q?=2Ecsv?=')
+2015-10-27 11:36:02,480 [Thread-62:7760] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-05 14:52:12,589 [Thread-71:5344] [django.request:224] [ERROR]- Internal Server Error: /update_domain/1/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 252, in updateDomain
+    status, reason, resp, ETag = update_obj.config(disId, etag)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 192, in config
+    response, resp = self.req(type, rq_url, rq_body, etag)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+2015-11-05 14:52:12,871 [Thread-72:7224] [django.request:143] [WARNING]- Not Found: /favicon.ico
+2015-11-05 14:58:32,605 [Thread-59:1416] [django.request:224] [ERROR]- Internal Server Error: /update_domain/1/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\cdn\cdn_manage\views.py", line 252, in updateDomain
+    status, reason, resp, ETag = update_obj.config(disId, etag)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 192, in config
+    response, resp = self.req(type, rq_url, rq_body, etag)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 160, in req
+    signature = self.calcSignature('md5', type, rq_url, rq_body)
+  File "E:\cdn\cdn_manage\CdnApi.py", line 136, in calcSignature
+    data_list.append(body_digest + '\n')
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
